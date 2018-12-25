@@ -50,6 +50,7 @@
     <Compile Include="Map.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="NN\CsvReader.cs" />
+    <Compile Include="NN\NeuralNetwork.cs" />
     <Compile Include="PointOnConsole.cs" />
     <Compile Include="PointToCollect.cs" />
     <Compile Include="Program.cs" />
