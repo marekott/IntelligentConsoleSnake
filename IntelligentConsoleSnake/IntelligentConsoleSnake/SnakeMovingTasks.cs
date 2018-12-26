@@ -50,7 +50,7 @@ namespace IntelligentConsoleSnake
 				{
 					if (_doesSnakeMoved)
 					{
-						ReadPlayerKey(_snake);
+						ReadPlayerKey();
 						_doesSnakeMoved = false;
 					}
 				}
@@ -62,7 +62,7 @@ namespace IntelligentConsoleSnake
 		}
 
 
-		private void ReadPlayerKey(Snake movingSnake)
+		private void ReadPlayerKey()
 		{
 			DirectionOfMoveEnum newDirection = DirectionOfMoveEnum.Right;
 
@@ -92,7 +92,7 @@ namespace IntelligentConsoleSnake
 			}
 
 			Monitor.Enter(_snake);
-			movingSnake.TurnSnake(newDirection);
+			_snake.TurnSnake(newDirection);
 			Monitor.Exit(_snake);
 		}
 
