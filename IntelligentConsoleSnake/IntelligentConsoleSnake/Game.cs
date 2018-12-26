@@ -47,11 +47,12 @@ namespace IntelligentConsoleSnake
 
 			SnakeMovingTasks snakeTasks = new SnakeMovingTasks(_playersSnake);
 
+			//TODO: Dodać jakiegoś ifa czy coś jak gracz chce oglądać inteligętną grę
 			var movingSnake = snakeTasks.MovingSnakeAction(reward, map);
-			var readingKeyFromPlayer = snakeTasks.TurningSnakeAction();
+			//var readingKeyFromPlayer = snakeTasks.TurningSnakeAction();
 
 			movingSnake.Start();
-			readingKeyFromPlayer.Start();
+			//readingKeyFromPlayer.Start();
 
 			movingSnake.Wait();
 			GameOver();

@@ -2,6 +2,7 @@
 
 namespace IntelligentConsoleSnake.NN
 {
+	//TODO: Przydałyby się jakieś pseudo testy jednostkowe. Np. jak jest przy przeszkodzie w każdym wariancie (góra, dół itd) to sprawdzić jaką zwraca wartość i napisać ifa który sprawdzi czy po przeróbkach zwróci to samo
 	public class NeuralNetwork
 	{
 		private readonly int _numberOfNeuronsInFirstLayer; //actual 5

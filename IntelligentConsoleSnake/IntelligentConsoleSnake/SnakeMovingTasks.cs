@@ -11,6 +11,8 @@ namespace IntelligentConsoleSnake
 		private readonly Snake _snake;
 		private readonly Score _score;
 		private static bool _isGameOver;
+		//TODO: zrób to jakoś po ludzku, na razie wrzucone na pałe
+		private NN.NeuralNetwork neuralNetwork = new NN.NeuralNetwork(5, 5, 2);
 
 		public SnakeMovingTasks(Snake snake)
 		{
@@ -26,6 +28,7 @@ namespace IntelligentConsoleSnake
 				{
 					Thread.Sleep(PauseBeforeEachSnakeMoveInMilliseconds);
 
+					MoveSnakeAutomatically(map);
 					//Monitor is used to prevent situation when first element was moved and before second will inherit his direction of move, 
 					//it is changed. So the change is possible only between calls of MoveSnake method 
 					Monitor.Enter(_snake);
@@ -91,10 +94,43 @@ namespace IntelligentConsoleSnake
 					return;
 			}
 
+			// TODO: Sprawdź czy movingSnake nie jest redundantny. Patrz jak odbywa się ruch w MovingSnakeAction
 			Monitor.Enter(_snake);
 			movingSnake.TurnSnake(newDirection);
 			Monitor.Exit(_snake);
 		}
+
+		public void MoveSnakeAutomatically(Map map)
+		{
+			double[][] possibleMoves = _snake.CreatePossibleScenariosOfMove(map);
+
+			var winIndex = neuralNetwork.ChooseDirection(possibleMoves);
+			TurnIntelligentSnake(winIndex);
+		}
+
+		private void TurnIntelligentSnake(int winIndex)
+		{
+			DirectionOfMoveEnum newDirection = DirectionOfMoveEnum.Right;
+
+			switch (winIndex)
+			{
+				case 1:
+					newDirection = DirectionOfMoveEnum.Right;
+					break;
+				case 2:
+					newDirection = DirectionOfMoveEnum.Up;
+					break;
+				case 3:
+					newDirection = DirectionOfMoveEnum.Left;
+					break;
+				case 4:
+					newDirection = DirectionOfMoveEnum.Down;
+					break;
+			}
+
+			_snake.TurnSnake(newDirection);
+		}
+
 
 		public static void GameOver()
 		{
