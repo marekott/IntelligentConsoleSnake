@@ -13,9 +13,10 @@ namespace IntelligentConsoleSnake
 		private const int StartGameTextPositionLeft = 21;
 		private const int StartGameTextPositionTop = 12;
 		private const string ConsoleTitle = "CONSOLE SNAKE";
-		private const string FirstOptionToChooseForPlayer = "1. Start Game";
-		private const string SecondOptionToChooseForPlayer = "2. Instructions";
-		private const string ThirdOptionToChooseForPlayer = "3. Exit Game";
+		private const string FirstOptionToChooseForPlayer = "1. Start manual game";
+		private const string SecondOptionToChooseForPlayer = "2. Start game with AI Snake";
+		private const string ThirdOptionToChooseForPlayer = "3. Instructions";
+		private const string FourthOptionToChooseForPlayer = "4. Exit Game";
 		private const ConsoleColor TitleColor = ConsoleColor.Green;
 
 		public static int LoadMenu()
@@ -35,6 +36,7 @@ namespace IntelligentConsoleSnake
 			BoardDrawer.WriteOnBoard(StartGameTextPositionLeft, StartGameTextPositionTop, FirstOptionToChooseForPlayer);
 			BoardDrawer.WriteOnBoard(StartGameTextPositionLeft, StartGameTextPositionTop + 2, SecondOptionToChooseForPlayer);
 			BoardDrawer.WriteOnBoard(StartGameTextPositionLeft, StartGameTextPositionTop + 4, ThirdOptionToChooseForPlayer);
+			BoardDrawer.WriteOnBoard(StartGameTextPositionLeft, StartGameTextPositionTop + 6, FourthOptionToChooseForPlayer);
 
 			var choosedOption = ReadPlayerChoice();
 
@@ -55,17 +57,22 @@ namespace IntelligentConsoleSnake
 					case ConsoleKey.D1:
 						choosedOption = 1;
 						shouldMenuBeOpen = false;
-					break;
+						break;
 
 					case ConsoleKey.D2:
 						choosedOption = 2;
 						shouldMenuBeOpen = false;
-					break;
+						break;
 
 					case ConsoleKey.D3:
 						choosedOption = 3;
 						shouldMenuBeOpen = false;
-					break;
+						break;
+
+					case ConsoleKey.D4:
+						choosedOption = 4;
+						shouldMenuBeOpen = false;
+						break;
 				}
 			}
 
