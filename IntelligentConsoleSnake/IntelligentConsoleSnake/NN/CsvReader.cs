@@ -10,7 +10,7 @@ namespace IntelligentConsoleSnake.NN
 		private static readonly string CurrentDirectory;
 		private static readonly DirectoryInfo Directory;
 		private static readonly string FileName;
-		private static List<string> _wholeFile;
+		private static List<string> _wholeFile = new List<string>();
 		private static double[] _weights;
 
 		static CsvReader()
@@ -18,16 +18,10 @@ namespace IntelligentConsoleSnake.NN
 			CurrentDirectory = System.IO.Directory.GetCurrentDirectory();
 			Directory = new DirectoryInfo(CurrentDirectory);
 			FileName = Path.Combine(Directory.FullName, @"NN\NNWeights8.txt");
-			
 		}
 
 		public static double[] ReadWeightsAndSplitToArray()
 		{
-			//TODO: Jak się nie wyzeruje to przy drugim uruchomieniu kontruktora NN coś dalej siedzi w _weights i świruje. StackOverflow sugeruje nie używać klasy syatycznej ale można też chyba coś pokombinować z IDisposible
-			_wholeFile = null;
-			_wholeFile = new List<string>();
-			_weights = null;
-
 			using (var reader = new StreamReader(FileName))
 			{
 				while (!reader.EndOfStream)
