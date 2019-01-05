@@ -54,7 +54,7 @@ namespace IntelligentConsoleSnake
 				{
 					if (_doesSnakeMoved)
 					{
-						ReadPlayerKey(_snake, isAiPlaying);
+						ReadPlayerKey(isAiPlaying);
 						_doesSnakeMoved = false;
 					}
 				}
