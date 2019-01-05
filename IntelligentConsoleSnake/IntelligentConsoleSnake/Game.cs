@@ -22,13 +22,18 @@ namespace IntelligentConsoleSnake
 				if (_playerChoice == 1)
 				{
 					SnakeMovingTasks.NewGame();
-					StartGame(map);
+					StartGame(map, false);
 				}
 				else if (_playerChoice == 2)
 				{
-					ShowInstructions();
+					SnakeMovingTasks.NewGame();
+					StartGame(map, true);
 				}
 				else if (_playerChoice == 3)
+				{
+					ShowInstructions();
+				}
+				else if (_playerChoice == 4)
 				{
 					ExitGame();
 					break;
@@ -36,19 +41,19 @@ namespace IntelligentConsoleSnake
 			}
 		}
 
-		private static void StartGame(Map map)
+		private static void StartGame(Map map, bool isAiPlaying)
 		{
 			map.DrawMap();
 
 			var reward = new PointToCollect(InitialHeadOfSnakeLeftPosition + 10, InitialHeadOfSnakeTopPosition - 5, SnakeAndRewardSymbol, DirectionOfMoveEnum.Right);
 			reward.DrawPoint();
 
-			_playersSnake = new Snake(CreatelistOfPointsForSnakeConstructor());
+			_playersSnake = new Snake(CreateListOfPointsForSnakeConstructor());
 
 			SnakeMovingTasks snakeTasks = new SnakeMovingTasks(_playersSnake);
 
-			var movingSnake = snakeTasks.MovingSnakeAction(reward, map);
-			var readingKeyFromPlayer = snakeTasks.TurningSnakeAction();
+			var movingSnake = snakeTasks.MovingSnakeAction(reward, map, isAiPlaying);
+			var readingKeyFromPlayer = snakeTasks.TurningSnakeAction(isAiPlaying);
 
 			movingSnake.Start();
 			readingKeyFromPlayer.Start();
@@ -58,7 +63,7 @@ namespace IntelligentConsoleSnake
 			Console.ReadKey(true);
 		}
 
-		private static List<PointOnConsole> CreatelistOfPointsForSnakeConstructor()
+		private static List<PointOnConsole> CreateListOfPointsForSnakeConstructor()
 		{
 			List<PointOnConsole> listOfPointsForSnakeConstructor = new List<PointOnConsole>();
 			for (int pointLeftPosition = InitialHeadOfSnakeLeftPosition; pointLeftPosition > InitialHeadOfSnakeTopPosition; pointLeftPosition--)

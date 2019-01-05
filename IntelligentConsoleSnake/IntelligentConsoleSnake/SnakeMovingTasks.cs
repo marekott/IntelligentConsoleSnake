@@ -11,6 +11,7 @@ namespace IntelligentConsoleSnake
 		private readonly Snake _snake;
 		private readonly Score _score;
 		private static bool _isGameOver;
+		private static readonly NN.NeuralNetwork NeuralNetwork = new NN.NeuralNetwork(5, 5, 2);
 
 		public SnakeMovingTasks(Snake snake)
 		{
@@ -18,7 +19,7 @@ namespace IntelligentConsoleSnake
 			_score = new Score();
 		}
 
-		public Task MovingSnakeAction(PointToCollect reward, Map map)
+		public Task MovingSnakeAction(PointToCollect reward, Map map, bool isAiPlaying)
 		{
 			Action Moving = () =>
 			{
@@ -27,13 +28,16 @@ namespace IntelligentConsoleSnake
 					Thread.Sleep(PauseBeforeEachSnakeMoveInMilliseconds);
 
 					//Monitor is used to prevent situation when first element was moved and before second will inherit his direction of move, 
-					//it is changed. So the change is possible only between calls of MoveSnake method 
+					//first once more changes direction of move. So the change is possible only between calls of MoveSnake method 
 					Monitor.Enter(_snake);
+					if (isAiPlaying)
+					{
+						TurnSnakeAutomatically(map);
+					}
 					_snake.MoveSnake(reward, map, _score);
 					_doesSnakeMoved = true;
 					Monitor.Pulse(_snake);
 					Monitor.Exit(_snake);
-
 				}
 			};
 
@@ -42,7 +46,7 @@ namespace IntelligentConsoleSnake
 			return movingSnakeTask;
 		}
 
-		public Task TurningSnakeAction()
+		public Task TurningSnakeAction(bool isAiPlaying)
 		{
 			Action ReadingKey = () =>
 			{
@@ -50,7 +54,7 @@ namespace IntelligentConsoleSnake
 				{
 					if (_doesSnakeMoved)
 					{
-						ReadPlayerKey();
+						ReadPlayerKey(_snake, isAiPlaying);
 						_doesSnakeMoved = false;
 					}
 				}
@@ -62,7 +66,7 @@ namespace IntelligentConsoleSnake
 		}
 
 
-		private void ReadPlayerKey()
+		private void ReadPlayerKey(bool isAiPlaying)
 		{
 			DirectionOfMoveEnum newDirection = DirectionOfMoveEnum.Right;
 
@@ -92,9 +96,44 @@ namespace IntelligentConsoleSnake
 			}
 
 			Monitor.Enter(_snake);
-			_snake.TurnSnake(newDirection);
+			if(!isAiPlaying)
+			{
+				_snake.TurnSnake(newDirection);
+			}
 			Monitor.Exit(_snake);
 		}
+
+		public void TurnSnakeAutomatically(Map map)
+		{
+			double[][] possibleMoves = _snake.CreatePossibleScenariosOfMove(map);
+
+			var winIndex = NeuralNetwork.ChooseDirection(possibleMoves);
+			TurnIntelligentSnake(winIndex);
+		}
+
+		private void TurnIntelligentSnake(int winIndex)
+		{
+			DirectionOfMoveEnum newDirection = DirectionOfMoveEnum.Right;
+
+			switch (winIndex)
+			{
+				case 1:
+					newDirection = DirectionOfMoveEnum.Right;
+					break;
+				case 2:
+					newDirection = DirectionOfMoveEnum.Up;
+					break;
+				case 3:
+					newDirection = DirectionOfMoveEnum.Left;
+					break;
+				case 4:
+					newDirection = DirectionOfMoveEnum.Down;
+					break;
+			}
+
+			_snake.TurnSnake(newDirection);
+		}
+
 
 		public static void GameOver()
 		{
