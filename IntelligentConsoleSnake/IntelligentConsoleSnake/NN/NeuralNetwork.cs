@@ -2,7 +2,7 @@
 
 namespace IntelligentConsoleSnake.NN
 {
-	//TODO: Przydałyby się jakieś pseudo testy jednostkowe. Np. jak jest przy przeszkodzie w każdym wariancie (góra, dół itd) to sprawdzić jaką zwraca wartość i napisać ifa który sprawdzi czy po przeróbkach zwróci to samo
+	//TODO: Refactor klasy
 	public class NeuralNetwork
 	{
 		private readonly int _numberOfNeuronsInFirstLayer; //actual 5
@@ -58,8 +58,6 @@ namespace IntelligentConsoleSnake.NN
 
 		private void SetWeights()
 		{
-			// copy weights and biases from in weights[] array
-			// to i-h weights, i-h biases, h-o weights, h-o biases
 			int numWeights = CountAllWeights();
 			if (_weightsFromFile.Length != numWeights)
 			{
@@ -125,21 +123,35 @@ namespace IntelligentConsoleSnake.NN
 			double[] oSums = new double[_numberOfNeuronsInOutputLayer]; // output nodes sums
 
 			for (int j = 0; j < _numberOfNeuronsInFirstHiddenLayer; ++j) // compute i-h sum of weights * inputs, wejście pierwszego neuronu jest kolejno przemnażane przez wagi jego połączeń z każdym neuronem warstwy ukrytej
-			for (int i = 0; i < _numberOfNeuronsInFirstLayer; ++i)
-				hSums[j] += inputSignals[i] * _inputToHiddenWeights[i][j]; // note +=
+			{
+				for (int i = 0; i < _numberOfNeuronsInFirstLayer; ++i)
+				{
+					hSums[j] += inputSignals[i] * _inputToHiddenWeights[i][j]; // note +=
+				}
+			}
 
 			for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i) // add biases to hidden sums, hSums odpowiada za gradntowi wartości połączeń danego neuronu waarstwy ukrytej z każdym z neuronów warstwy wejściowej
+			{
 				hSums[i] += _firstHiddenLayerNeuronsBiases[i];
+			}
 
 			for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i) // apply activation
+			{
 				_firstHiddenLayerOutputs[i] = HyperTan(hSums[i]); // hard-coded
+			}
 
 			for (int j = 0; j < _numberOfNeuronsInOutputLayer; ++j) // compute h-o sum of weights * hOutputs
-			for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i)
-				oSums[j] += _firstHiddenLayerOutputs[i] * _hiddenToOutputWeights[i][j];
+			{
+				for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i)
+				{
+					oSums[j] += _firstHiddenLayerOutputs[i] * _hiddenToOutputWeights[i][j];
+				}
+			}
 
 			for (int i = 0; i < _numberOfNeuronsInOutputLayer; ++i) // add biases to output sums
+			{
 				oSums[i] += _outputsNeuronsBiases[i];
+			}
 
 			double[] softOut = Softmax(oSums); // all outputs at once for efficiency, softmax jest funkcją aktywacji neuronów warstwy wyjściowej
 			Array.Copy(softOut, _outputsOfNetwork, softOut.Length);

@@ -91,10 +91,9 @@ namespace IntelligentConsoleSnake
 			_listOfPoints.First.Value.ChangeDirectionOfMove(newDirection);
 		}
 
-		// TODO: Zrób refactor poniższych metod
 		public double[][] CreatePossibleScenariosOfMove(Map map)
 		{
-			//1 dimension: all 4 possible directions of move, 2 dimension: suggested direction(1.0 - right ,2.0 - up, 3.0 - left, 4.0 - down), obstacleUp(0.0 - no, 1.0 - yes), obstacleRight, obstacleDown, obstacleLeft
+			//1 dimension: all 4 possible scenarios of move, 2 dimension: suggested direction(1.0 - right ,2.0 - up, 3.0 - left, 4.0 - down), obstacleUp(0.0 - no, 1.0 - yes), obstacleRight, obstacleDown, obstacleLeft
 			double[][] possibleMoves = new double[4][];
 			possibleMoves[0] = new[] { 1.0, IsObstacleUp(map), IsObstacleRight(map), IsObstacleDown(map), IsObstacleLeft(map) };
 			possibleMoves[1] = new[] { 2.0, IsObstacleUp(map), IsObstacleRight(map), IsObstacleDown(map), IsObstacleLeft(map) };
