@@ -1,7 +1,7 @@
 ﻿using IntelligentConsoleSnake.NN;
 using Xunit;
 
-namespace IntelligentConsoleSnakeTests.NN
+namespace IntelligentConsoleSnakeTests1.NN
 {
 	public class CsvReaderTests
 	{
