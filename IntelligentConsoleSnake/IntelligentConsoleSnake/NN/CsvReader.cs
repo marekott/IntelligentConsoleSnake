@@ -10,8 +10,6 @@ namespace IntelligentConsoleSnake.NN
 		private static readonly string CurrentDirectory;
 		private static readonly DirectoryInfo Directory;
 		private static readonly string FileName;
-		private static List<string> _wholeFile = new List<string>();
-		private static double[] _weights;
 
 		static CsvReader()
 		{
@@ -24,37 +22,46 @@ namespace IntelligentConsoleSnake.NN
 		{
 			using (var reader = new StreamReader(FileName))
 			{
+				List<string> wholeFile = new List<string>();
 				while (!reader.EndOfStream)
 				{
-					_wholeFile.Add(reader.ReadLine());
+					wholeFile.Add(reader.ReadLine());
 				}
+
+				wholeFile = SplitBySymbol(FileDelimiter, wholeFile);
+				var weights = AssignWeightsToArray(wholeFile);
+
+				return weights;
 			}
 
-			SplitBySymbol(FileDelimiter);
-			InitializeWeightsArray();
-			AssignWeightsToArray();
-				
-			return _weights;
-			
 		}
 
-		private static void SplitBySymbol(char symbol)
+		private static List<string> SplitBySymbol(char symbol, List<string> wholeFile)
 		{
-			_wholeFile = _wholeFile[0].Split(symbol).ToList();
-			_wholeFile.RemoveAt(_wholeFile.Count - 1); //last char in file is ';'
+			wholeFile = wholeFile[0].Split(symbol).ToList();
+			wholeFile.RemoveAt(wholeFile.Count - 1); //last char in file is ';' so there will by empty record which is deleted
+
+			return wholeFile;
 		}
 
-		private static void InitializeWeightsArray()
+		private static double[] AssignWeightsToArray(List<string> wholeFile)
 		{
-			_weights = new double[_wholeFile.Count];
-		}
+			double[] weights = InitializeWeightsArray(wholeFile);
 
-		private static void AssignWeightsToArray()
-		{
-			for (int i = 0; i < _wholeFile.Count; i++)
+			for (int i = 0; i < wholeFile.Count; i++)
 			{
-				_weights[i] = double.Parse(_wholeFile[i]);
+				weights[i] = double.Parse(wholeFile[i]);
 			}
+
+			return weights;
 		}
+
+		private static double[] InitializeWeightsArray(List<string> wholeFile)
+		{
+			double[] weights = new double[wholeFile.Count];
+			return weights;
+		}
+
+		
 	}
 }
