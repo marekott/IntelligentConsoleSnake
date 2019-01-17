@@ -6,7 +6,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 	public class CsvReaderTests
 	{
 		[Fact()]
-		public void ReadWeightsAndSplitToArrayCheckIfResultIsArrayHas42Weights()
+		public void ReadWeightsAndSplitToArrayCheckIfResultIsArrayThatHas42Weights()
 		{
 			var weightsFromFile = CsvReader.ReadWeightsAndSplitToArray();
 
