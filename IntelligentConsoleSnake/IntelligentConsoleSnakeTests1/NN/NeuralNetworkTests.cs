@@ -13,7 +13,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 		}
 
 		[Fact()]
-		public void NeuralNetworkConstructorCheckIfBadWeightsInArrayInSetWeightsIsNotThrown()
+		public void NeuralNetworkConstructorTestForCreatingNotNull()
 		{
 			int numberOfInputs = 5;
 			int numberOfNeuronsInFirstHiddenLayer = 5;
@@ -218,6 +218,30 @@ namespace IntelligentConsoleSnakeTests1.NN
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
 			Assert.False(result == 3 || result == 4, "Snake crashed a border!");
+		}
+
+		[Fact()]
+		public void NeuralNetworkDoesNotThrowExceptionWhenObstaclesAreAllAround()
+		{
+			double[][] possibleMoves = new double[4][];
+			possibleMoves[0] = new[] { 1.0, 1.0, 1.0, 1.0, 1.0 };
+			possibleMoves[1] = new[] { 2.0, 1.0, 1.0, 1.0, 1.0 };
+			possibleMoves[2] = new[] { 3.0, 1.0, 1.0, 1.0, 1.0 };
+			possibleMoves[3] = new[] { 4.0, 1.0, 1.0, 1.0, 1.0 };
+
+			_neuralNetwork.ChooseDirection(possibleMoves);
+		}
+
+		[Fact()]
+		public void NeuralNetworkDoesNotThrowExceptionWhenThereAreNoObstaclesAround()
+		{
+			double[][] possibleMoves = new double[4][];
+			possibleMoves[0] = new[] { 1.0, 0.0, 0.0, 0.0, 0.0 };
+			possibleMoves[1] = new[] { 2.0, 0.0, 0.0, 0.0, 0.0 };
+			possibleMoves[2] = new[] { 3.0, 0.0, 0.0, 0.0, 0.0 };
+			possibleMoves[3] = new[] { 4.0, 0.0, 0.0, 0.0, 0.0 };
+
+			_neuralNetwork.ChooseDirection(possibleMoves);
 		}
 	}
 }
