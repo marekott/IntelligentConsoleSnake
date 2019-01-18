@@ -3,10 +3,9 @@ using Xunit;
 
 namespace IntelligentConsoleSnakeTests1.NN
 {
-	//TODO Sprawdź czy nazwy testów zgadzają się na pewno z tym co jest przekazywane do metody (czy jak pisze, że przeszkoda jest u góry to serio idzie tablica tylko z jedynką na pozycji przeszkody u góry
 	public class NeuralNetworkTests
 	{
-		private NeuralNetwork _neuralNetwork;
+		private readonly NeuralNetwork _neuralNetwork;
 
 		public NeuralNetworkTests()
 		{
@@ -21,6 +20,8 @@ namespace IntelligentConsoleSnakeTests1.NN
 			int numberOfOutputNeurons = 2;
 
 			var neuralNetwork = new NeuralNetwork(numberOfInputs, numberOfNeuronsInFirstHiddenLayer, numberOfOutputNeurons);
+
+			Assert.False(neuralNetwork == null, "NeuralNetwork object is null");
 		}
 
 		[Fact()]
@@ -34,7 +35,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result!=1,"Snake crashed a border!");
+			Assert.False(result == 1,"Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -48,7 +49,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 1 && result != 2, "Snake crashed a border!");
+			Assert.False(result == 1 || result == 2, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -62,7 +63,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 1 && result != 2 && result != 3, "Snake crashed a border!");
+			Assert.False(result == 1 || result == 2 || result == 3, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -76,7 +77,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 1 && result != 4, "Snake crashed a border!");
+			Assert.False(result == 1 || result == 4, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -90,7 +91,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 1 && result != 3 && result != 4, "Snake crashed a border!");
+			Assert.False(result == 1 || result == 3 || result == 4, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -104,7 +105,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 1 && result != 3, "Snake crashed a border!");
+			Assert.False(result == 1 || result == 3, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -118,7 +119,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 2, "Snake crashed a border!");
+			Assert.False(result == 2, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -132,7 +133,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 2 && result != 3, "Snake crashed a border!");
+			Assert.False(result == 2 || result == 3, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -146,7 +147,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 2 && result != 3 && result != 4, "Snake crashed a border!");
+			Assert.False(result == 2 || result == 3 || result == 4, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -160,7 +161,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 1 && result != 2 && result != 4, "Snake crashed a border!");
+			Assert.False(result == 1 || result == 2 || result == 4, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -174,7 +175,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 2 && result != 4, "Snake crashed a border!");
+			Assert.False(result == 2 || result == 4, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -188,7 +189,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 3, "Snake crashed a border!");
+			Assert.False(result == 3, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -202,7 +203,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 4, "Snake crashed a border!");
+			Assert.False(result == 4, "Snake crashed a border!");
 		}
 
 		[Fact()]
@@ -216,7 +217,7 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 			var result = _neuralNetwork.ChooseDirection(possibleMoves);
 
-			Assert.True(result != 3 && result != 4, "Snake crashed a border!");
+			Assert.False(result == 3 || result == 4, "Snake crashed a border!");
 		}
 	}
 }
