@@ -18,6 +18,8 @@ namespace IntelligentConsoleSnake.NN
 		private readonly double[] _outputsOfNetwork;
 		private readonly double[] _weightsFromFile;
 
+		private readonly Neuron[] _inputLayer;
+
 		public NeuralNetwork(int numberOfInputs, int numberOfNeuronsInFirstHiddenLayer, int numberOfOutputNeurons)
 		{
 			_numberOfNeuronsInFirstLayer = numberOfInputs;
@@ -35,6 +37,13 @@ namespace IntelligentConsoleSnake.NN
 			_weightsFromFile = CsvReader.ReadWeightsAndSplitToArray();
 
 			SetWeights();
+
+			//TODO wyciągniecie do osobnej metody, number of inputs jest na sztywno
+			_inputLayer = new Neuron[5];
+			for (int i = 0; i < numberOfInputs; i++)
+			{
+				_inputLayer[i] = new Neuron(1,i);
+			}
 		} 
 
 		private static double[][] MakeMatrix(int rows,int cols, double startingValue = 0.0)
@@ -126,7 +135,7 @@ namespace IntelligentConsoleSnake.NN
 			{
 				for (int i = 0; i < _numberOfNeuronsInFirstLayer; ++i)
 				{
-					hSums[j] += inputSignals[i] * _inputToHiddenWeights[i][j]; // note +=
+					hSums[j] += _inputLayer[i].ComputeOutput(inputSignals) * _inputToHiddenWeights[i][j];
 				}
 			}
 

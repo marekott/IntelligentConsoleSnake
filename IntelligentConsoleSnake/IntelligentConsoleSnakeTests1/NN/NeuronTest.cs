@@ -13,8 +13,8 @@ namespace IntelligentConsoleSnakeTests1.NN
 
 		public NeuronTest()
 		{
-			_inputsWith3Numbers = new[] { 1.0, 2.0, 3.0 };
-			_inputsWith10Numbers = new[] { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+			_inputsWith3Numbers = new[] {1.0, 2.0, 3.0};
+			_inputsWith10Numbers = new[] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
 			IEnumerable<double> inputs1 = Enumerable.Repeat(1.0, 50);
 			IEnumerable<double> inputs2 = Enumerable.Repeat(2.0, 50);

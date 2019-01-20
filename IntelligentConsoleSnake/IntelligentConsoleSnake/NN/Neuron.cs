@@ -3,24 +3,24 @@
 	public class Neuron
 	{
 		private readonly int _numberOfInputs;
-		private readonly int _neuronPositionFromTop; 
+		protected readonly int NeuronPositionFromTop; 
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="numberOfInputs">counting from 1</param>
-		/// <param name="neuronPositionFromTop">counting from 1</param>
+		/// <param name="neuronPositionFromTop">counting from 0</param>
 		public Neuron(int numberOfInputs, int neuronPositionFromTop)
 		{
 			_numberOfInputs = numberOfInputs;
-			_neuronPositionFromTop = neuronPositionFromTop;
+			NeuronPositionFromTop = neuronPositionFromTop;
 		}
 
-		public double ComputeOutput(double[] inputs)
+		public virtual double ComputeOutput(double[] inputs)
 		{
 			double inputSum = 0;
 
-			for (int i = _numberOfInputs * _neuronPositionFromTop; i <= _numberOfInputs * (_neuronPositionFromTop + 1) - 1; i++)
+			for (int i = _numberOfInputs * NeuronPositionFromTop; i <= _numberOfInputs * (NeuronPositionFromTop + 1) - 1; i++) //for numberOfInputs=5 and neuronPositionFromTop=2 takes arguments from inputs(with Length=10) with indexes from <5:9>)
 			{
 				inputSum += inputs[i];
 			}
