@@ -19,6 +19,7 @@ namespace IntelligentConsoleSnake.NN
 		private readonly double[] _weightsFromFile;
 
 		private readonly Neuron[] _inputLayer;
+		private readonly NeuronHiddenLayer[] _firstHiddenLayer;
 
 		public NeuralNetwork(int numberOfInputs, int numberOfNeuronsInFirstHiddenLayer, int numberOfOutputNeurons)
 		{
@@ -39,10 +40,16 @@ namespace IntelligentConsoleSnake.NN
 			SetWeights();
 
 			//TODO wyciągniecie do osobnej metody, number of inputs jest na sztywno
-			_inputLayer = new Neuron[5];
+			_inputLayer = new Neuron[numberOfInputs];
 			for (int i = 0; i < numberOfInputs; i++)
 			{
 				_inputLayer[i] = new Neuron(1,i);
+			}
+
+			_firstHiddenLayer = new NeuronHiddenLayer[numberOfNeuronsInFirstHiddenLayer];
+			for (int i = 0; i < numberOfNeuronsInFirstHiddenLayer; i++)
+			{
+				_firstHiddenLayer[i] = new NeuronHiddenLayer(1, i);
 			}
 		} 
 
@@ -139,6 +146,7 @@ namespace IntelligentConsoleSnake.NN
 				}
 			}
 
+			//TODO Biasy powinny się dodać wewnątrz neuronu więc ten for do wywalenia i ta część ma się obliczyć w _firstHiddenLayer[i].ComputeOutput(hSums);
 			for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i) // add biases to hidden sums, hSums odpowiada za gradntowi wartości połączeń danego neuronu waarstwy ukrytej z każdym z neuronów warstwy wejściowej
 			{
 				hSums[i] += _firstHiddenLayerNeuronsBiases[i];
@@ -146,7 +154,7 @@ namespace IntelligentConsoleSnake.NN
 
 			for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i) // apply activation
 			{
-				_firstHiddenLayerOutputs[i] = HyperTan(hSums[i]); // hard-coded
+				_firstHiddenLayerOutputs[i] = _firstHiddenLayer[i].ComputeOutput(hSums);
 			}
 
 			for (int j = 0; j < _numberOfNeuronsInOutputLayer; ++j) // compute h-o sum of weights * hOutputs
@@ -157,33 +165,19 @@ namespace IntelligentConsoleSnake.NN
 				}
 			}
 
+			//TODO Biasy w neuronie wyjściowym
 			for (int i = 0; i < _numberOfNeuronsInOutputLayer; ++i) // add biases to output sums
 			{
 				oSums[i] += _outputsNeuronsBiases[i];
 			}
 
+			//TODO Softmax w neuronie wyjściowym
 			double[] softOut = Softmax(oSums); // all outputs at once for efficiency, softmax jest funkcją aktywacji neuronów warstwy wyjściowej
 			Array.Copy(softOut, _outputsOfNetwork, softOut.Length);
 
 			double[] retResult = new double[_numberOfNeuronsInOutputLayer]; // could define a GetOutputs, odpowiedzi neuronów wartwy wyjściowej
 			Array.Copy(_outputsOfNetwork, retResult, retResult.Length);
 			return retResult;
-		}
-
-		private static double HyperTan(double x)
-		{
-			if (x < -20.0)
-			{
-				return -1.0; // approximation is correct to 30 decimals
-			}
-			else if (x > 20.0)
-			{
-				return 1.0;
-			}
-			else
-			{
-				return Math.Tanh(x);
-			}
 		}
 
 		private static double[] Softmax(double[] oSums)
