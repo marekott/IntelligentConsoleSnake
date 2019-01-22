@@ -14,8 +14,13 @@ namespace IntelligentConsoleSnake.NN
 			
 		}
 
-		public override double ComputeOutput(double[] inputs)
+		public override double ComputeOutput(double[] inputs, double[] biases = null)
 		{
+			if (biases != null)
+			{
+				inputs[NeuronPositionFromTop] += biases[NeuronPositionFromTop];
+			}
+
 			return HyperTan(inputs[NeuronPositionFromTop]);
 		}
 

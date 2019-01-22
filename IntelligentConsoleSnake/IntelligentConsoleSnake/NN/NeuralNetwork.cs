@@ -11,11 +11,9 @@ namespace IntelligentConsoleSnake.NN
 
 		private readonly double[][] _inputToHiddenWeights; // in first dimension are all input neurons and second dimension are their connections to neurons of first hidden layer
 		private readonly double[] _firstHiddenLayerNeuronsBiases; //biases of each neuron of first hidden layer
-		private readonly double[] _firstHiddenLayerOutputs; 
 		private readonly double[][] _hiddenToOutputWeights; // in first dimension are all hidden layer neurons and second dimension are their connections to neurons of output layer
 
 		private readonly double[] _outputsNeuronsBiases;
-		private readonly double[] _outputsOfNetwork;
 		private readonly double[] _weightsFromFile;
 
 		private readonly Neuron[] _inputLayer;
@@ -29,11 +27,9 @@ namespace IntelligentConsoleSnake.NN
 
 			_inputToHiddenWeights = MakeMatrix(numberOfInputs, numberOfNeuronsInFirstHiddenLayer);
 			_firstHiddenLayerNeuronsBiases = new double[numberOfNeuronsInFirstHiddenLayer];
-			_firstHiddenLayerOutputs = new double[numberOfNeuronsInFirstHiddenLayer];
 
 			_hiddenToOutputWeights = MakeMatrix(numberOfNeuronsInFirstHiddenLayer, numberOfOutputNeurons);
 			_outputsNeuronsBiases = new double[numberOfOutputNeurons];
-			_outputsOfNetwork = new double[numberOfOutputNeurons];
 
 			_weightsFromFile = CsvReader.ReadWeightsAndSplitToArray();
 
@@ -59,14 +55,6 @@ namespace IntelligentConsoleSnake.NN
 			for (int r = 0; r < result.Length; ++r)
 			{
 				result[r] = new double[cols];
-			}
-
-			for (int i = 0; i < rows; ++i)
-			{
-				for (int j = 0; j < cols; ++j)
-				{
-					result[i][j] = startingValue;
-				}
 			}
 
 			return result;
@@ -138,6 +126,7 @@ namespace IntelligentConsoleSnake.NN
 			double[] hSums = new double[_numberOfNeuronsInFirstHiddenLayer]; // hidden nodes sums scratch array
 			double[] oSums = new double[_numberOfNeuronsInOutputLayer]; // output nodes sums
 
+			//TODO zamiast tego fora możnaby dodać extension method, która obliczy hSums według poniższego wzoru ale poza tą klasą
 			for (int j = 0; j < _numberOfNeuronsInFirstHiddenLayer; ++j) // compute i-h sum of weights * inputs, wejście pierwszego neuronu jest kolejno przemnażane przez wagi jego połączeń z każdym neuronem warstwy ukrytej
 			{
 				for (int i = 0; i < _numberOfNeuronsInFirstLayer; ++i)
@@ -152,16 +141,11 @@ namespace IntelligentConsoleSnake.NN
 				hSums[i] += _firstHiddenLayerNeuronsBiases[i];
 			}
 
-			for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i) // apply activation
-			{
-				_firstHiddenLayerOutputs[i] = _firstHiddenLayer[i].ComputeOutput(hSums);
-			}
-
 			for (int j = 0; j < _numberOfNeuronsInOutputLayer; ++j) // compute h-o sum of weights * hOutputs
 			{
 				for (int i = 0; i < _numberOfNeuronsInFirstHiddenLayer; ++i)
 				{
-					oSums[j] += _firstHiddenLayerOutputs[i] * _hiddenToOutputWeights[i][j];
+					oSums[j] += _firstHiddenLayer[i].ComputeOutput(hSums) * _hiddenToOutputWeights[i][j];
 				}
 			}
 
@@ -173,11 +157,8 @@ namespace IntelligentConsoleSnake.NN
 
 			//TODO Softmax w neuronie wyjściowym
 			double[] softOut = Softmax(oSums); // all outputs at once for efficiency, softmax jest funkcją aktywacji neuronów warstwy wyjściowej
-			Array.Copy(softOut, _outputsOfNetwork, softOut.Length);
 
-			double[] retResult = new double[_numberOfNeuronsInOutputLayer]; // could define a GetOutputs, odpowiedzi neuronów wartwy wyjściowej
-			Array.Copy(_outputsOfNetwork, retResult, retResult.Length);
-			return retResult;
+			return softOut;
 		}
 
 		private static double[] Softmax(double[] oSums)
