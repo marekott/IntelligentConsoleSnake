@@ -65,6 +65,9 @@
   <ItemGroup>
     <Compile Include="NN\CsvReaderTests.cs" />
     <Compile Include="NN\NeuralNetworkTests.cs" />
+    <Compile Include="NN\NeuronHiddenLayerTest.cs" />
+    <Compile Include="NN\NeuronOutputLayerTest.cs" />
+    <Compile Include="NN\NeuronTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
