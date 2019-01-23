@@ -8,6 +8,11 @@ namespace IntelligentConsoleSnake.NN
 {
 	public class NeuronOutputLayer : Neuron
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="numberOfInputs">counting from 1</param>
+		/// <param name="neuronPositionFromTop">counting from 0</param>
 		public NeuronOutputLayer(int numberOfInputs, int neuronPositionFromTop) : base(numberOfInputs, neuronPositionFromTop)
 		{
 		}
@@ -16,10 +21,28 @@ namespace IntelligentConsoleSnake.NN
 		{
 			if (biases != null)
 			{
-				throw new NotImplementedException();
+				inputs = AddBiases(inputs, biases);
 			}
 
-			throw new NotImplementedException();
+			double sum = 0.0;
+			foreach (var input in inputs)
+			{
+				sum += Math.Exp(input);
+			}
+
+			var result = Math.Exp(inputs[NeuronPositionFromTop]) / sum;
+
+			return result;
+		}
+
+		private double[] AddBiases(double[] inputs, double[] biases)
+		{
+			for (int i = 0; i < inputs.Length; i++)
+			{
+				inputs[i] += biases[i];
+			}
+
+			return inputs;
 		}
 	}
 }

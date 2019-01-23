@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IntelligentConsoleSnake.NN
+﻿namespace IntelligentConsoleSnake.NN
 {
 	public class Neuron
 	{

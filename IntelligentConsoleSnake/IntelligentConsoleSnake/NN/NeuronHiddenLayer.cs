@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntelligentConsoleSnake.NN
 {
-	//TODO kiepsko, że trzeba podać w konstruktorze wartość dla liczby inputów bo nie będize prawdopodobnie potrzebne, jeżeli tak będzie zamień kolejność i zrób opcjonalnym
 	public class NeuronHiddenLayer : Neuron
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="numberOfInputs">counting from 1</param>
+		/// <param name="neuronPositionFromTop">counting from 0</param>
 		public NeuronHiddenLayer(int numberOfInputs, int neuronPositionFromTop) : base(numberOfInputs, neuronPositionFromTop)
 		{
-			
 		}
 
 		public override double ComputeOutput(double[] inputs, double[] biases = null)
