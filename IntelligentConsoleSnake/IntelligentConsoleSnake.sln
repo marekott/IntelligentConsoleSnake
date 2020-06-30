@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligentConsoleSnake", "IntelligentConsoleSnake\IntelligentConsoleSnake.csproj", "{14D25D6A-D1E6-4571-8A82-74266FC825E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligentConsoleSnakeTests", "IntelligentConsoleSnakeTests1\IntelligentConsoleSnakeTests.csproj", "{3C37D726-49D6-4700-8646-D75DE3A0183B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame", "SnakeGame\SnakeGame.csproj", "{52F9C3D9-D7F9-4478-8D95-9F5CC5471E75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4B79E151-276A-4178-9E72-4B3D35DF1DCC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.UnitTests", "SnakeGame.UnitTests\SnakeGame.UnitTests.csproj", "{BCD9B9BF-6625-431B-AD09-5B40373F6B90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,20 @@ Global
 		{3C37D726-49D6-4700-8646-D75DE3A0183B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C37D726-49D6-4700-8646-D75DE3A0183B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C37D726-49D6-4700-8646-D75DE3A0183B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F9C3D9-D7F9-4478-8D95-9F5CC5471E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F9C3D9-D7F9-4478-8D95-9F5CC5471E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F9C3D9-D7F9-4478-8D95-9F5CC5471E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F9C3D9-D7F9-4478-8D95-9F5CC5471E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCD9B9BF-6625-431B-AD09-5B40373F6B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCD9B9BF-6625-431B-AD09-5B40373F6B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCD9B9BF-6625-431B-AD09-5B40373F6B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCD9B9BF-6625-431B-AD09-5B40373F6B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCD9B9BF-6625-431B-AD09-5B40373F6B90} = {4B79E151-276A-4178-9E72-4B3D35DF1DCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFDE6461-F060-497C-95FC-0B72A7220910}
