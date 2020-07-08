@@ -6,15 +6,18 @@ namespace ConsoleUI
 {
     public class GameController
     {
-        private readonly Game _game;
+        private readonly IGameCreator _gameCreator;
+        private Game _game;
 
         public GameController(IGameCreator gameCreator)
         {
-            _game = gameCreator.FactoryMethod();
+            _gameCreator = gameCreator;
         }
 
         public void NewGame()
         {
+            _game = _gameCreator.FactoryMethod();
+
             var snakeMovingTask = new Task(_game.StartGame);
             snakeMovingTask.Start();
 
