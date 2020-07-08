@@ -1,6 +1,6 @@
 ﻿using SnakeGame;
 
-namespace ConsoleUI
+namespace ConsoleUI.FactoryMethods
 {
     public interface IGameCreator
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using ConsoleUI.Configuration;
 using SnakeGame.Interfaces;
 
 namespace ConsoleUI

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using ConsoleUI.Configuration;
 using SnakeGame;
 
-namespace ConsoleUI
+namespace ConsoleUI.FactoryMethods
 {
     public class GameCreator : IGameCreator
     {

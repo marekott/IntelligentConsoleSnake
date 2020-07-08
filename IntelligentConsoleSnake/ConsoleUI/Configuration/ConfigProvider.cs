@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using System.Configuration;
 
-namespace ConsoleUI
+namespace ConsoleUI.Configuration
 {
     public class ConfigProvider : IConfigProvider //TODO jako singleton
     {

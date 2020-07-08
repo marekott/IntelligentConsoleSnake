@@ -1,4 +1,6 @@
 ﻿using System;
+using ConsoleUI.Configuration;
+using ConsoleUI.FactoryMethods;
 
 namespace ConsoleUI
 {

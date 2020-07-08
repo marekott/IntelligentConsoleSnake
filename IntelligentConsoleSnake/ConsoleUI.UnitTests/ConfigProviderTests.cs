@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using ConsoleUI.Configuration;
+using NUnit.Framework;
 
 namespace ConsoleUI.UnitTests
 {

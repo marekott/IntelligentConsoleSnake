@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ConsoleUI.FactoryMethods;
 using SnakeGame;
 
 namespace ConsoleUI

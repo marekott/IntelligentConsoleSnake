@@ -1,4 +1,4 @@
-﻿namespace ConsoleUI
+﻿namespace ConsoleUI.Configuration
 {
     public interface IConfigProvider
     {
