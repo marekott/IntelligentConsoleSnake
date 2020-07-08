@@ -10,8 +10,9 @@ namespace ConsoleUI
             Console.SetWindowSize(70,30);
 
             var gameCreator = new GameCreator();
-            var xyz = new XYZ(gameCreator);
-            var menu = new Menu(xyz); //TODO Constructor DI
+            var gameController = new GameController(gameCreator);
+            var configProvider = new ConfigProvider();
+            var menu = new Menu(gameController, configProvider); //TODO Constructor DI
             menu.DisplayMenu();
         }
     }

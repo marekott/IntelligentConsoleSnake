@@ -4,7 +4,8 @@ namespace ConsoleUI
 {
     public class Menu
     {
-        private readonly XYZ _xyz;
+        private readonly GameController _gameController;
+        private readonly IConfigProvider _configProvider;
         private const string ConsoleTitle = "CONSOLE SNAKE";
         private const string StartNewGameLabel = "1. Start new game";
         private const string InstructionLabel = "2. Instructions";
@@ -22,9 +23,10 @@ namespace ConsoleUI
                                         "To see more stuff, visit my github: https://github.com/marekott" +
                                         "\nIf you have any questions,\n" + "contact me on on LinkedIn: www.linkedin.com/in/marek-ott-171608152";
 
-        public Menu(XYZ xyz)
+        public Menu(GameController gameController, IConfigProvider configProvider)
         {
-            _xyz = xyz;
+            _gameController = gameController;
+            _configProvider = configProvider;
         }
 
         public void DisplayMenu()
@@ -41,8 +43,8 @@ namespace ConsoleUI
                 switch (selectedMenuOption.Key)
                 {
                     case ConsoleKey.D1:
-                        Console.Clear();
-                        _xyz.NewGame();
+                        DisplayMapBorders();
+                        _gameController.NewGame();
                         break;
 
                     case ConsoleKey.D2:
@@ -99,6 +101,32 @@ namespace ConsoleUI
             Console.WriteLine(InstructionLabel);
             Console.SetCursorPosition(leftOffset, topOffset + 11);
             Console.WriteLine(ExitGameLabel);
+        }
+
+        private void DisplayMapBorders()
+        {
+            var mapWidth = _configProvider.GetMapWidth();
+            var mapHeight = _configProvider.GetMapHeight();
+            var leftOffset = _configProvider.GetGameLeftOffset();
+            var topOffset = _configProvider.GetGameTopOffset();
+
+            Console.Clear();
+
+            for (int i = 0; i <= mapWidth; i++) //drawing border horizontally 
+            {
+                Console.SetCursorPosition(i + leftOffset, topOffset);
+                Console.Write("|");
+                Console.SetCursorPosition(i + leftOffset, mapHeight + topOffset);
+                Console.Write("|");
+            }
+
+            for (int i = 0; i <= mapHeight; i++) //drawing border vertically
+            {
+                Console.SetCursorPosition(leftOffset, i + topOffset);
+                Console.Write("|");
+                Console.SetCursorPosition(mapWidth + leftOffset, i + topOffset);
+                Console.Write("|");
+            }
         }
 
         private void DisplayInstruction()
