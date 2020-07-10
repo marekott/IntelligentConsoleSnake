@@ -21,13 +21,13 @@ namespace SnakeGame
             DistanceFromLeft = _random.Next(1, map.Width);
             DistanceFromTop = _random.Next(1, map.Height);
             
-            _display.DrawReward(DistanceFromLeft, DistanceFromTop);
+            _display.Reward(DistanceFromLeft, DistanceFromTop);
         }
 
         public void Collect(int score)
         {
             _display.Clear(DistanceFromLeft, DistanceFromTop);
-            _display.DrawScore(score);
+            _display.Score(score);
         }
     }
 }

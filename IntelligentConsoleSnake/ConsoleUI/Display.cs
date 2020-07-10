@@ -17,21 +17,21 @@ namespace ConsoleUI
             _scoreLabelTopPosition = _topOffset - 1;
         }
 
-        public void DrawSnakeElement(int distanceFromLeft, int distanceFromTop)
+        public void SnakeElement(int distanceFromLeft, int distanceFromTop)
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(distanceFromLeft + _leftOffset, distanceFromTop + _topOffset);
             Console.Write("*");
         }
 
-        public void DrawReward(int distanceFromLeft, int distanceFromTop)
+        public void Reward(int distanceFromLeft, int distanceFromTop)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(distanceFromLeft + _leftOffset, distanceFromTop + _topOffset);
             Console.Write("*");
         }
 
-        public void DrawScore(int score)
+        public void Score(int score)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(_leftOffset, _scoreLabelTopPosition);

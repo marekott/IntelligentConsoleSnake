@@ -4,15 +4,15 @@ namespace SnakeGame.UnitTests.Stub
 {
     public class Display : IDisplay
     {
-        public void DrawSnakeElement(int distanceFromLeft, int distanceFromTop)
+        public void SnakeElement(int distanceFromLeft, int distanceFromTop)
         {
         }
 
-        public void DrawReward(int distanceFromLeft, int distanceFromTop)
+        public void Reward(int distanceFromLeft, int distanceFromTop)
         {
         }
 
-        public void DrawScore(int score)
+        public void Score(int score)
         {
         }
 
