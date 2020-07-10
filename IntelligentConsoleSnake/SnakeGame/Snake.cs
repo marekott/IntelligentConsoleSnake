@@ -25,7 +25,7 @@ namespace SnakeGame
             {
                 _display.Clear(element.DistanceFromLeft, element.DistanceFromTop);
                 element.Move();
-                _display.Draw(element.DistanceFromLeft, element.DistanceFromTop);
+                _display.DrawSnakeElement(element.DistanceFromLeft, element.DistanceFromTop);
             }
             InheritDirectionOfMoveFromPreviousElement();
         }

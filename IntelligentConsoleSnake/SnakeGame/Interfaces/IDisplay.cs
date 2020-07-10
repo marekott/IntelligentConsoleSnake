@@ -2,7 +2,7 @@
 {
     public interface IDisplay
     {
-        void Draw(int distanceFromLeft, int distanceFromTop);
+        void DrawSnakeElement(int distanceFromLeft, int distanceFromTop);
         void Clear(int distanceFromLeft, int distanceFromTop);
     }
 }

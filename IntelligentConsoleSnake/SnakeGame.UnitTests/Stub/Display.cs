@@ -4,7 +4,7 @@ namespace SnakeGame.UnitTests.Stub
 {
     public class Display : IDisplay
     {
-        public void Draw(int distanceFromLeft, int distanceFromTop)
+        public void DrawSnakeElement(int distanceFromLeft, int distanceFromTop)
         {
         }
 

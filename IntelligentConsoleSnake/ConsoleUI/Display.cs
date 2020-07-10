@@ -15,7 +15,7 @@ namespace ConsoleUI
             _topOffset = configProvider.GetGameTopOffset();
         }
 
-        public void Draw(int distanceFromLeft, int distanceFromTop)
+        public void DrawSnakeElement(int distanceFromLeft, int distanceFromTop)
         {
             Console.SetCursorPosition(distanceFromLeft + _leftOffset, distanceFromTop + _topOffset);
             Console.Write("*");
