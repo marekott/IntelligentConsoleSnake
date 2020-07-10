@@ -7,19 +7,23 @@ namespace SnakeGame
         private readonly Snake _snake;
         private readonly Map _map;
         private readonly GameRules _gameRules;
+        private readonly Reward _reward;
         private bool _isGameOver;
         private readonly int _snakeSpeedInMilliseconds;
 
-        public Game(Snake snake, Map map, GameRules gameRules, int snakeSpeedInMilliseconds)
+        public Game(Snake snake, Map map, GameRules gameRules, Reward reward, int snakeSpeedInMilliseconds) //TODO builder zamiast x parametrów?
         {
             _snake = snake;
             _map = map;
             _gameRules = gameRules;
+            _reward = reward;
             _snakeSpeedInMilliseconds = snakeSpeedInMilliseconds;
         }
 
         public void StartGame()
         {
+            _reward.GenerateRandom(_map);
+
             while (_isGameOver == false)
             {
                 Thread.Sleep(_snakeSpeedInMilliseconds); 
@@ -31,6 +35,12 @@ namespace SnakeGame
                 _isGameOver = _gameRules.IsGameOver(_snake, _map);
                 Monitor.Pulse(_snake);
                 Monitor.Exit(_snake);
+
+                if (_gameRules.IsRewardCollected(_snake, _reward))
+                {
+                    _reward.Collect();
+                    _reward.GenerateRandom(_map);
+                }
             }
         }
 

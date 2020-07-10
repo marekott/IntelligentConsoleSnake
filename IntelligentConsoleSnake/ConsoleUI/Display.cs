@@ -17,6 +17,14 @@ namespace ConsoleUI
 
         public void DrawSnakeElement(int distanceFromLeft, int distanceFromTop)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(distanceFromLeft + _leftOffset, distanceFromTop + _topOffset);
+            Console.Write("*");
+        }
+
+        public void DrawReward(int distanceFromLeft, int distanceFromTop)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(distanceFromLeft + _leftOffset, distanceFromTop + _topOffset);
             Console.Write("*");
         }

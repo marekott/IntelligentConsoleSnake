@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ConsoleUI.Configuration;
 using SnakeGame;
 
@@ -20,7 +21,9 @@ namespace ConsoleUI.FactoryMethods
             var display = new Display(configProvider); 
             var snake = new Snake(snakeBody, display);
             var gameRules = new GameRules();
-            return new Game(snake, map, gameRules, 150);
+            var random = new Random();
+            var reward = new Reward(random, display);
+            return new Game(snake, map, gameRules, reward, 150);
         }
     }
 }

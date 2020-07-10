@@ -8,6 +8,10 @@ namespace SnakeGame.UnitTests.Stub
         {
         }
 
+        public void DrawReward(int distanceFromLeft, int distanceFromTop)
+        {
+        }
+
         public void Clear(int distanceFromLeft, int distanceFromTop)
         {
         }

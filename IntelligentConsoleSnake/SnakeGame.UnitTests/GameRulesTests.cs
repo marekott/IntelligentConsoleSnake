@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using SnakeGame.UnitTests.Stub;
 
@@ -110,6 +111,48 @@ namespace SnakeGame.UnitTests
 
             // assert
             Assert.True(actual);
+        }
+
+        [Test]
+        public void IsRewardCollectedTrue()
+        {
+            // arrange
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(0, 0, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+            var reward = new Reward(new Random(), displayStub);
+            var gameRules = new GameRules();
+
+            // act
+            var actual = gameRules.IsRewardCollected(snake, reward);
+
+            // assert
+            Assert.True(actual); //True because initial position values of reward are 0 and 0
+        }
+
+        [Test]
+        public void IsRewardCollectedFalse()
+        {
+            // arrange
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(0, 0, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+            var map = new Map(10, 10);
+            var reward = new Reward(new Random(), displayStub);
+            reward.GenerateRandom(map);
+            var gameRules = new GameRules();
+
+            // act
+            var actual = gameRules.IsRewardCollected(snake, reward);
+
+            // assert
+            Assert.False(actual); //False because after GenerateRandom() position values of reward can't be 0 and 0
         }
     }
 }
