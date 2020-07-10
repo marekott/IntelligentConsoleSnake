@@ -19,5 +19,9 @@ namespace SnakeGame.UnitTests.Stub
         public void Clear(int distanceFromLeft, int distanceFromTop)
         {
         }
+
+        public void GameOver()
+        {
+        }
     }
 }

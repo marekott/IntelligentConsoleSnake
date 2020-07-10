@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using SnakeGame.Interfaces;
 
 namespace SnakeGame
 {
@@ -8,16 +9,18 @@ namespace SnakeGame
         private readonly Map _map;
         private readonly GameRules _gameRules;
         private readonly Reward _reward;
+        private readonly IDisplay _display;
         private bool _isGameOver;
         private readonly int _snakeSpeedInMilliseconds;
         private int _score;
 
-        public Game(Snake snake, Map map, GameRules gameRules, Reward reward, int snakeSpeedInMilliseconds) //TODO builder zamiast x parametrów?
+        public Game(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds) //TODO builder zamiast x parametrów?
         {
             _snake = snake;
             _map = map;
             _gameRules = gameRules;
             _reward = reward;
+            _display = display;
             _snakeSpeedInMilliseconds = snakeSpeedInMilliseconds;
         }
 
@@ -46,6 +49,8 @@ namespace SnakeGame
                     _reward.GenerateRandom(_map);
                 }
             }
+
+            _display.GameOver();
         }
 
         public void TurnSnake(DirectionOfMove newDirection)

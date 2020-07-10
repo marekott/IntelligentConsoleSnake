@@ -6,5 +6,6 @@
         void Reward(int distanceFromLeft, int distanceFromTop);
         void Score(int score);
         void Clear(int distanceFromLeft, int distanceFromTop);
+        void GameOver();
     }
 }

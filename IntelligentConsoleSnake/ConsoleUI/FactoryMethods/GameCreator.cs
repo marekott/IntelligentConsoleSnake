@@ -23,7 +23,7 @@ namespace ConsoleUI.FactoryMethods
             var gameRules = new GameRules();
             var random = new Random();
             var reward = new Reward(random, display);
-            return new Game(snake, map, gameRules, reward, 150);
+            return new Game(snake, map, gameRules, reward, display, 150);
         }
     }
 }
