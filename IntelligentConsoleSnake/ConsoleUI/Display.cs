@@ -8,11 +8,13 @@ namespace ConsoleUI
     {
         private readonly int _leftOffset;
         private readonly int _topOffset;
+        private readonly int _scoreLabelTopPosition;
 
         public Display(IConfigProvider configProvider)
         {
             _leftOffset = configProvider.GetGameLeftOffset();
             _topOffset = configProvider.GetGameTopOffset();
+            _scoreLabelTopPosition = _topOffset - 1;
         }
 
         public void DrawSnakeElement(int distanceFromLeft, int distanceFromTop)
@@ -27,6 +29,13 @@ namespace ConsoleUI
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(distanceFromLeft + _leftOffset, distanceFromTop + _topOffset);
             Console.Write("*");
+        }
+
+        public void DrawScore(int score)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(_leftOffset, _scoreLabelTopPosition);
+            Console.Write($"Score: {score}");
         }
 
         public void Clear(int distanceFromLeft, int distanceFromTop)

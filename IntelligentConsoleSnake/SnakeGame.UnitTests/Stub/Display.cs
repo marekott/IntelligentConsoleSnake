@@ -12,6 +12,10 @@ namespace SnakeGame.UnitTests.Stub
         {
         }
 
+        public void DrawScore(int score)
+        {
+        }
+
         public void Clear(int distanceFromLeft, int distanceFromTop)
         {
         }

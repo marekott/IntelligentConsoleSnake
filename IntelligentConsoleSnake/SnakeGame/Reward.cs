@@ -16,7 +16,7 @@ namespace SnakeGame
             _display = display;
         }
 
-        public void GenerateRandom(Map map)
+        public void GenerateRandom(Map map) //TODO mechanizm zabezpieczający przed generowaniem na wężu
         {
             DistanceFromLeft = _random.Next(1, map.Width);
             DistanceFromTop = _random.Next(1, map.Height);
@@ -24,9 +24,10 @@ namespace SnakeGame
             _display.DrawReward(DistanceFromLeft, DistanceFromTop);
         }
 
-        public void Collect()
+        public void Collect(int score)
         {
             _display.Clear(DistanceFromLeft, DistanceFromTop);
+            _display.DrawScore(score);
         }
     }
 }
