@@ -53,6 +53,10 @@ namespace ConsoleUI
                         newDirection = DirectionOfMove.Down;
                         _game.TurnSnake(newDirection);
                         break;
+
+                    case ConsoleKey.Escape:
+                        _game.CancelGame();
+                        break;
                 }
             }
         }

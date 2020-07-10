@@ -114,7 +114,29 @@ namespace SnakeGame.UnitTests
         }
 
         [Test]
-        public void IsRewardCollectedTrue()
+        public void IsGameOverTrueBecauseGameWasCancelledTest()
+        {
+            // arrange
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(2, 1, DirectionOfMove.Right),
+                new SnakeElement(1, 1, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+            var gameRules = new GameRules();
+            var map = new Map(100, 100);
+
+            // act
+            gameRules.CancelGame();
+            var actual = gameRules.IsGameOver(snake, map);
+
+            // assert
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void IsRewardCollectedTrueTest()
         {
             // arrange
             var snakeBody = new List<SnakeElement>
@@ -134,7 +156,7 @@ namespace SnakeGame.UnitTests
         }
 
         [Test]
-        public void IsRewardCollectedFalse()
+        public void IsRewardCollectedFalseTest()
         {
             // arrange
             var snakeBody = new List<SnakeElement>

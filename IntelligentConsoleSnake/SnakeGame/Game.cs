@@ -27,7 +27,6 @@ namespace SnakeGame
         public void StartGame()
         {
             _reward.GenerateRandom(_map);
-            _score = 0;
 
             while (_isGameOver == false)
             {
@@ -58,6 +57,12 @@ namespace SnakeGame
             Monitor.Enter(_snake);
             _snake.TurnSnake(newDirection);
             Monitor.Exit(_snake);
+        }
+
+        public void CancelGame()
+        {
+            _gameRules.CancelGame();
+            _display.GameOver();
         }
     }
 }
