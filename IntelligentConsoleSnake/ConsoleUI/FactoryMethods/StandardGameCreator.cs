@@ -5,11 +5,11 @@ using SnakeGame.Interfaces;
 
 namespace ConsoleUI.FactoryMethods
 {
-    public class GameCreator : IGameCreator
+    public class StandardGameCreator : IGameCreator
     {
         public IGame FactoryMethod()
         {
-            var configProvider = new ConfigProvider();//TODO DI
+            var configProvider = new ConfigProvider();
             var map = new Map(configProvider.GetMapHeight(), configProvider.GetMapWidth());
             var snakeBody = new List<SnakeElement>
             {

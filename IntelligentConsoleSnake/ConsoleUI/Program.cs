@@ -11,7 +11,7 @@ namespace ConsoleUI
             Console.CursorVisible = false;
             Console.SetWindowSize(70,30);
 
-            var gameCreator = new GameCreator();
+            var gameCreator = new StandardGameCreator();
             var gameController = new GameController(gameCreator);
             var configProvider = new ConfigProvider();
             var menu = new Menu(gameController, configProvider); //TODO Constructor DI
