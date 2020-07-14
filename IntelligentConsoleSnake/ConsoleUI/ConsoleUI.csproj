@@ -83,6 +83,7 @@
     <Compile Include="FactoryMethods\GameControllerCreator.cs" />
     <Compile Include="FactoryMethods\IGameControllerCreator.cs" />
     <Compile Include="FactoryMethods\IGameCreator.cs" />
+    <Compile Include="GameControllers\AIGameController.cs" />
     <Compile Include="GameControllers\IGameController.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />

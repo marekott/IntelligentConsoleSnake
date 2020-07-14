@@ -13,8 +13,9 @@ namespace ConsoleUI
         private bool _gameInProgress;
         private const string ConsoleTitle = "CONSOLE SNAKE";
         private const string StartNewGameLabel = "1. Start new game";
-        private const string InstructionLabel = "2. Instructions";
-        private const string ExitGameLabel = "3. Exit Game";
+        private const string StartNewGameWithAILabel = "2. Start new game AI";
+        private const string InstructionLabel = "3. Instructions";
+        private const string ExitGameLabel = "4. Exit Game";
         private const string InstructionsText = "Game provides to modes. In first you control the snake, second allows " +
                                                "\nyou to watch how trained neural network is playing." +
                                                "\nIf you are controlling a snake, use keybord arrows to turn it." +
@@ -86,9 +87,11 @@ namespace ConsoleUI
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(leftOffset, topOffset + 7);
             Console.WriteLine(StartNewGameLabel);
+            Console.SetCursorPosition(leftOffset, topOffset + 8);
+            Console.WriteLine(StartNewGameWithAILabel);
             Console.SetCursorPosition(leftOffset, topOffset + 9);
             Console.WriteLine(InstructionLabel);
-            Console.SetCursorPosition(leftOffset, topOffset + 11);
+            Console.SetCursorPosition(leftOffset, topOffset + 10);
             Console.WriteLine(ExitGameLabel);
         }
 
@@ -105,10 +108,16 @@ namespace ConsoleUI
                     break;
 
                 case ConsoleKey.D2:
-                    DisplayInstruction();
+                    Console.Clear();
+                    _gameController = _gameControllerCreator.AIGameControllerFactoryMethod();
+                    _gameController.NewGame();
                     break;
 
                 case ConsoleKey.D3:
+                    DisplayInstruction();
+                    break;
+
+                case ConsoleKey.D4:
                     _gameInProgress = false;
                     break;
             }

@@ -20,5 +20,18 @@ namespace ConsoleUI.UnitTests.FactoryMethods
             // assert
             Assert.IsInstanceOf<StandardGameController>(actual);
         }
+
+        [Test]
+        public void AIGameControllerFactoryMethodTest()
+        {
+            // arrange
+            var gameControllerCreator = new GameControllerCreator(new GameCreator(new ConfigProvider(), new Display(new ConfigProvider())));
+
+            // act
+            var actual = gameControllerCreator.AIGameControllerFactoryMethod();
+
+            // assert
+            Assert.IsInstanceOf<AIGameController>(actual);
+        }
     }
 }
