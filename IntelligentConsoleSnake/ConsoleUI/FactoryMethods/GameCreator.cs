@@ -21,8 +21,7 @@ namespace ConsoleUI.FactoryMethods
             var display = new Display(configProvider); 
             var snake = new Snake(snakeBody, display);
             var gameRules = new GameRules();
-            var random = new Random();
-            var reward = new Reward(random, display);
+            var reward = new Reward(display);
             return new Game(snake, map, gameRules, reward, display, 150);
         }
     }

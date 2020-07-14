@@ -10,9 +10,9 @@ namespace SnakeGame
         public int DistanceFromLeft { get; private set; }
         public int DistanceFromTop { get; private set; }
 
-        public Reward(Random random, IDisplay display)
+        public Reward(IDisplay display)
         {
-            _random = random;
+            _random = new Random();
             _display = display;
         }
 

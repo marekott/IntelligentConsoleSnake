@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using SnakeGame.UnitTests.Stub;
 
@@ -145,7 +144,7 @@ namespace SnakeGame.UnitTests
             };
             var displayStub = new Display();
             var snake = new Snake(snakeBody, displayStub);
-            var reward = new Reward(new Random(), displayStub);
+            var reward = new Reward(displayStub);
             var gameRules = new GameRules();
 
             // act
@@ -166,7 +165,7 @@ namespace SnakeGame.UnitTests
             var displayStub = new Display();
             var snake = new Snake(snakeBody, displayStub);
             var map = new Map(10, 10);
-            var reward = new Reward(new Random(), displayStub);
+            var reward = new Reward(displayStub);
             reward.GenerateRandom(map);
             var gameRules = new GameRules();
 

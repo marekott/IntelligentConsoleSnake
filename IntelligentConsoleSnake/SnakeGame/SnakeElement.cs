@@ -74,7 +74,7 @@ namespace SnakeGame
 
         public SnakeElement CreateSnakeElementBehind()
         {
-            var newSnakeElement = new SnakeElement(DistanceFromLeft, DistanceFromTop, DirectionOfMove);
+            var newSnakeElement = (SnakeElement)MemberwiseClone();
 
             switch (DirectionOfMove)
             {
