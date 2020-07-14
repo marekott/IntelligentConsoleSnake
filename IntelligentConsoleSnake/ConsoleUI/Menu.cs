@@ -10,6 +10,7 @@ namespace ConsoleUI
         private IGameController _gameController;
         private readonly IGameControllerCreator _gameControllerCreator;
         private readonly IConfigProvider _configProvider;
+        private bool _gameInProgress;
         private const string ConsoleTitle = "CONSOLE SNAKE";
         private const string StartNewGameLabel = "1. Start new game";
         private const string InstructionLabel = "2. Instructions";
@@ -26,7 +27,7 @@ namespace ConsoleUI
         private const string ExitText = "Thank you for playing my game.\n" +
                                         "To see more stuff, visit my github: https://github.com/marekott" +
                                         "\nIf you have any questions,\n" + "contact me on on LinkedIn: www.linkedin.com/in/marek-ott-171608152";
-
+        
         public Menu(IGameControllerCreator gameControllerCreator, IConfigProvider configProvider)
         {
             _gameControllerCreator = gameControllerCreator;
@@ -35,31 +36,14 @@ namespace ConsoleUI
 
         public void DisplayMenu()
         {
-            var gameInProgress = true;
+            _gameInProgress = true;
 
-            while (gameInProgress)
+            while (_gameInProgress)
             {
                 Console.Clear();
                 DisplayMenuBorders();
                 DisplayMenuOptions();
-                var selectedMenuOption = Console.ReadKey(true);
-
-                switch (selectedMenuOption.Key)
-                {
-                    case ConsoleKey.D1:
-                        DisplayMapBorders();
-                        _gameController = _gameControllerCreator.StandardGameControllerFactoryMethod();
-                        _gameController.NewGame();
-                        break;
-
-                    case ConsoleKey.D2:
-                        DisplayInstruction();
-                        break;
-
-                    case ConsoleKey.D3:
-                        gameInProgress = false;
-                        break;
-                }
+                ReadPlayerKey();
             }
 
             DisplayExitText();
@@ -106,6 +90,28 @@ namespace ConsoleUI
             Console.WriteLine(InstructionLabel);
             Console.SetCursorPosition(leftOffset, topOffset + 11);
             Console.WriteLine(ExitGameLabel);
+        }
+
+        private void ReadPlayerKey()
+        {
+            var selectedMenuOption = Console.ReadKey(true);
+
+            switch (selectedMenuOption.Key)
+            {
+                case ConsoleKey.D1:
+                    DisplayMapBorders();
+                    _gameController = _gameControllerCreator.StandardGameControllerFactoryMethod();
+                    _gameController.NewGame();
+                    break;
+
+                case ConsoleKey.D2:
+                    DisplayInstruction();
+                    break;
+
+                case ConsoleKey.D3:
+                    _gameInProgress = false;
+                    break;
+            }
         }
 
         private void DisplayMapBorders()
