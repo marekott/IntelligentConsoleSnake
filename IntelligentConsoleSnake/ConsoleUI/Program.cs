@@ -1,21 +1,21 @@
 ﻿using System;
-using ConsoleUI.Configuration;
-using ConsoleUI.FactoryMethods;
+using Autofac;
 
 namespace ConsoleUI
 {
-    public class Program
+    public static class Program
     {
         public static void Main()
         {
             Console.CursorVisible = false;
             Console.SetWindowSize(70,30);
 
-            var gameCreator = new StandardGameCreator();
-            var gameController = new GameController(gameCreator);
-            var configProvider = new ConfigProvider();
-            var menu = new Menu(gameController, configProvider); //TODO Constructor DI
-            menu.DisplayMenu();
+            var container = ContainerConfig.Configure();
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var menu = scope.Resolve<Menu>();
+                menu.DisplayMenu();
+            }
         }
     }
 }

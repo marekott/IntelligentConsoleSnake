@@ -1,11 +1,14 @@
 ﻿using System;
 using ConsoleUI.Configuration;
+using ConsoleUI.FactoryMethods;
+using ConsoleUI.GameControllers;
 
 namespace ConsoleUI
 {
     public class Menu
     {
-        private readonly GameController _gameController;
+        private IGameController _gameController;
+        private readonly IGameControllerCreator _gameControllerCreator;
         private readonly IConfigProvider _configProvider;
         private const string ConsoleTitle = "CONSOLE SNAKE";
         private const string StartNewGameLabel = "1. Start new game";
@@ -24,9 +27,9 @@ namespace ConsoleUI
                                         "To see more stuff, visit my github: https://github.com/marekott" +
                                         "\nIf you have any questions,\n" + "contact me on on LinkedIn: www.linkedin.com/in/marek-ott-171608152";
 
-        public Menu(GameController gameController, IConfigProvider configProvider)
+        public Menu(IGameControllerCreator gameControllerCreator, IConfigProvider configProvider)
         {
-            _gameController = gameController;
+            _gameControllerCreator = gameControllerCreator;
             _configProvider = configProvider;
         }
 
@@ -45,6 +48,7 @@ namespace ConsoleUI
                 {
                     case ConsoleKey.D1:
                         DisplayMapBorders();
+                        _gameController = _gameControllerCreator.StandardGameControllerFactoryMethod();
                         _gameController.NewGame();
                         break;
 

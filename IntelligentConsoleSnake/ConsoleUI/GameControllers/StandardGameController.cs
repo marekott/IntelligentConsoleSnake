@@ -4,21 +4,21 @@ using ConsoleUI.FactoryMethods;
 using SnakeGame;
 using SnakeGame.Interfaces;
 
-namespace ConsoleUI
+namespace ConsoleUI.GameControllers
 {
-    public class GameController
+    public class StandardGameController : IGameController
     {
         private readonly IGameCreator _gameCreator;
         private IGame _game;
 
-        public GameController(IGameCreator gameCreator)
+        public StandardGameController(IGameCreator gameCreator)
         {
             _gameCreator = gameCreator;
         }
 
         public void NewGame()
         {
-            _game = _gameCreator.FactoryMethod();
+            _game = _gameCreator.StandardGameFactoryMethod();
 
             var snakeMovingTask = new Task(_game.StartGame);
             snakeMovingTask.Start();

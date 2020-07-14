@@ -1,7 +1,7 @@
 ﻿using ConsoleUI.Configuration;
 using NUnit.Framework;
 
-namespace ConsoleUI.UnitTests
+namespace ConsoleUI.UnitTests.Configuration
 {
     [TestFixture]
     public class ConfigProviderTests
