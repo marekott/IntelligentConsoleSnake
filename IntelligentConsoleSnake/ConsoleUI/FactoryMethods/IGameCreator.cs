@@ -1,9 +1,9 @@
-﻿using SnakeGame;
+﻿using SnakeGame.Interfaces;
 
 namespace ConsoleUI.FactoryMethods
 {
     public interface IGameCreator
     {
-        Game FactoryMethod();
+        IGame FactoryMethod();
     }
 }

@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using ConsoleUI.FactoryMethods;
 using SnakeGame;
+using SnakeGame.Interfaces;
 
 namespace ConsoleUI
 {
     public class GameController
     {
         private readonly IGameCreator _gameCreator;
-        private Game _game;
+        private IGame _game;
 
         public GameController(IGameCreator gameCreator)
         {

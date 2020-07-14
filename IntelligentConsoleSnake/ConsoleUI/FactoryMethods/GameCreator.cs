@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ConsoleUI.Configuration;
 using SnakeGame;
+using SnakeGame.Interfaces;
 
 namespace ConsoleUI.FactoryMethods
 {
     public class GameCreator : IGameCreator
     {
-        public Game FactoryMethod()
+        public IGame FactoryMethod()
         {
             var configProvider = new ConfigProvider();//TODO DI
             var map = new Map(configProvider.GetMapHeight(), configProvider.GetMapWidth());
@@ -22,7 +22,7 @@ namespace ConsoleUI.FactoryMethods
             var snake = new Snake(snakeBody, display);
             var gameRules = new GameRules();
             var reward = new Reward(display);
-            return new Game(snake, map, gameRules, reward, display, 150);
+            return new StandardGame(snake, map, gameRules, reward, display, 150);
         }
     }
 }

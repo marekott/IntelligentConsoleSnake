@@ -3,7 +3,7 @@ using SnakeGame.Interfaces;
 
 namespace SnakeGame
 {
-    public class Game
+    public class StandardGame : IGame
     {
         private readonly Snake _snake;
         private readonly Map _map;
@@ -14,7 +14,7 @@ namespace SnakeGame
         private readonly int _snakeSpeedInMilliseconds;
         private int _score;
 
-        public Game(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds) //TODO builder zamiast x parametrów?
+        public StandardGame(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds) //TODO builder zamiast x parametrów?
         {
             _snake = snake;
             _map = map;
