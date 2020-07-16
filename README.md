@@ -1,2 +1,17 @@
 # IntelligentConsoleSnake
-Project of simple game based on mobile snake. User have choice of playing manually or watching the game of trained Neural Network.
+Project of game based on mobile snake. User have choice of playing manually or watching the game of trained Neural Network.
+
+## System Context
+<p>
+  <img src="docs/component diagram.JPG" alt="System Context"/>
+</p>
+
+## SnakeGame
+<p>
+  <img src="docs/snake game.JPG" alt="Snake Game"/>
+</p>
+
+## ConsoleUI
+<p>
+  <img src="docs/ConsoleUI.JPG" alt="Console UI"/>
+</p>
