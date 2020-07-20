@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ConsoleUI.Configuration;
 using SnakeGame;
+using SnakeGame.Games;
 using SnakeGame.Interfaces;
 
 namespace ConsoleUI.FactoryMethods

@@ -1,7 +1,7 @@
 ﻿using ConsoleUI.Configuration;
 using ConsoleUI.FactoryMethods;
 using NUnit.Framework;
-using SnakeGame;
+using SnakeGame.Games;
 
 namespace ConsoleUI.UnitTests.FactoryMethods
 {

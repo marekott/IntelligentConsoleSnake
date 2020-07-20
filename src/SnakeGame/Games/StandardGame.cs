@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using SnakeGame.Interfaces;
 
-namespace SnakeGame
+namespace SnakeGame.Games
 {
     public class StandardGame : IGame
     {
