@@ -76,5 +76,22 @@ namespace ConsoleUI.UnitTests
             // assert
             Assert.IsNotNull(actual);
         }
+
+        [Test]
+        public void ConfigureRegistersISnakeBotTest()
+        {
+            // arrange
+            ISnakeBot actual;
+            var container = ContainerConfig.Configure();
+
+            // act
+            using (var scope = container.BeginLifetimeScope())
+            {
+                actual = scope.Resolve<ISnakeBot>();
+            }
+
+            // assert
+            Assert.IsNotNull(actual);
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace ConsoleUI.FactoryMethods
 
         public IGameController AIGameControllerFactoryMethod()
         {
-            return new AIGameController();
+            return new AIGameController(_gameCreator);
         }
     }
 }

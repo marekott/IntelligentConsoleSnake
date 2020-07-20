@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using ConsoleUI.Configuration;
 using ConsoleUI.FactoryMethods;
+using SnakeGame;
 using SnakeGame.Interfaces;
 
 namespace ConsoleUI
@@ -15,6 +16,7 @@ namespace ConsoleUI
             builder.RegisterType<GameCreator>().As<IGameCreator>();
             builder.RegisterType<Display>().As<IDisplay>().SingleInstance();
             builder.RegisterType<GameControllerCreator>().As<IGameControllerCreator>();
+            builder.RegisterType<SnakeBot>().As<ISnakeBot>();
             builder.RegisterType<Menu>();
 
             return builder.Build();

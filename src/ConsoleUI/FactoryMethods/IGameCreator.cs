@@ -5,5 +5,6 @@ namespace ConsoleUI.FactoryMethods
     public interface IGameCreator
     {
         IGame StandardGameFactoryMethod();
+        IGame AIGameFactoryMethod();
     }
 }

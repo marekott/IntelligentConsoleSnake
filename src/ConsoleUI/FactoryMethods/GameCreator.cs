@@ -10,11 +10,13 @@ namespace ConsoleUI.FactoryMethods
     {
         private readonly IConfigProvider _configProvider;
         private readonly IDisplay _display;
+        private readonly ISnakeBot _snakeBot;
 
-        public GameCreator(IConfigProvider configProvider, IDisplay display)
+        public GameCreator(IConfigProvider configProvider, IDisplay display, ISnakeBot snakeBot)
         {
             _configProvider = configProvider;
             _display = display;
+            _snakeBot = snakeBot;
         }
 
         public IGame StandardGameFactoryMethod()
@@ -24,6 +26,15 @@ namespace ConsoleUI.FactoryMethods
             var gameRules = new GameRules();
             var reward = new Reward(_display);
             return new StandardGame(snake, map, gameRules, reward, _display, 150);
+        }
+
+        public IGame AIGameFactoryMethod()
+        {
+            var map = CreateMap();
+            var snake = CreateSnake();
+            var gameRules = new GameRules();
+            var reward = new Reward(_display);
+            return new AIGame(snake, map, gameRules, reward, _display, 150, _snakeBot);
         }
 
         private Map CreateMap()

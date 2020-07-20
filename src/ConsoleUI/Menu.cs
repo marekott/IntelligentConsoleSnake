@@ -108,7 +108,7 @@ namespace ConsoleUI
                     break;
 
                 case ConsoleKey.D2:
-                    Console.Clear();
+                    DisplayMapBorders();
                     _gameController = _gameControllerCreator.AIGameControllerFactoryMethod();
                     _gameController.NewGame();
                     break;
