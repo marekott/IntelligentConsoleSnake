@@ -1,5 +1,5 @@
 ﻿using System;
-using Autofac;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleUI
 {
@@ -10,12 +10,9 @@ namespace ConsoleUI
             Console.CursorVisible = false;
             Console.SetWindowSize(70,30);
 
-            var container = ContainerConfig.Configure();
-            using (var scope = container.BeginLifetimeScope())
-            {
-                var menu = scope.Resolve<Menu>();
-                menu.DisplayMenu();
-            }
+            using var serviceProvider = ContainerConfig.ConfigureServiceProvider();
+            var menu = serviceProvider.GetService<Menu>();
+            menu.DisplayMenu();
         }
     }
 }

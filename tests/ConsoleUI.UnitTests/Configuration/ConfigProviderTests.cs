@@ -1,4 +1,5 @@
 ﻿using ConsoleUI.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 namespace ConsoleUI.UnitTests.Configuration
@@ -11,7 +12,7 @@ namespace ConsoleUI.UnitTests.Configuration
         {
             // arrange
             const int expected = 20;
-            var configProvider = new ConfigProvider();
+            var configProvider = ContainerConfig.ConfigureServiceProvider().GetService<IConfigProvider>();
 
             // act
             var actual = configProvider.GetMapHeight();
@@ -25,7 +26,7 @@ namespace ConsoleUI.UnitTests.Configuration
         {
             // arrange
             const int expected = 50;
-            var configProvider = new ConfigProvider();
+            var configProvider = ContainerConfig.ConfigureServiceProvider().GetService<IConfigProvider>();
 
             // act
             var actual = configProvider.GetMapWidth();
@@ -39,7 +40,7 @@ namespace ConsoleUI.UnitTests.Configuration
         {
             // arrange
             const int expected = 10;
-            var configProvider = new ConfigProvider();
+            var configProvider = ContainerConfig.ConfigureServiceProvider().GetService<IConfigProvider>();
 
             // act
             var actual = configProvider.GetGameLeftOffset();
@@ -53,7 +54,7 @@ namespace ConsoleUI.UnitTests.Configuration
         {
             // arrange
             const int expected = 4;
-            var configProvider = new ConfigProvider();
+            var configProvider = ContainerConfig.ConfigureServiceProvider().GetService<IConfigProvider>();
 
             // act
             var actual = configProvider.GetGameTopOffset();

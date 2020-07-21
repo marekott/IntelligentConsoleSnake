@@ -1,6 +1,7 @@
-﻿using Autofac;
-using ConsoleUI.Configuration;
+﻿using ConsoleUI.Configuration;
 using ConsoleUI.FactoryMethods;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using SnakeGame.Interfaces;
 
@@ -10,16 +11,31 @@ namespace ConsoleUI.UnitTests
     public class ContainerConfigTests
     {
         [Test]
-        public void ConfigureRegistersIConfigProviderTest()
+        public void ConfigureServiceProviderRegistersIConfigurationTest()
+        {
+            // arrange
+            IConfiguration actual;
+
+            // act
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
+            {
+                actual = serviceProvider.GetService<IConfiguration>();
+            }
+
+            // assert
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void ConfigureServiceProviderRegistersIConfigProviderTest()
         {
             // arrange
             IConfigProvider actual;
-            var container = ContainerConfig.Configure();
 
             // act
-            using (var scope = container.BeginLifetimeScope())
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
             {
-                actual = scope.Resolve<IConfigProvider>();
+                actual = serviceProvider.GetService<IConfigProvider>();
             }
 
             // assert
@@ -27,16 +43,15 @@ namespace ConsoleUI.UnitTests
         }
 
         [Test]
-        public void ConfigureRegistersIGameCreatorTest()
+        public void ConfigureServiceProviderRegistersIGameCreatorTest()
         {
             // arrange
             IGameCreator actual;
-            var container = ContainerConfig.Configure();
 
             // act
-            using (var scope = container.BeginLifetimeScope())
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
             {
-                actual = scope.Resolve<IGameCreator>();
+                actual = serviceProvider.GetService<IGameCreator>();
             }
 
             // assert
@@ -44,16 +59,15 @@ namespace ConsoleUI.UnitTests
         }
 
         [Test]
-        public void ConfigureRegistersIDisplayTest()
+        public void ConfigureServiceProviderRegistersIDisplayTest()
         {
             // arrange
             IDisplay actual;
-            var container = ContainerConfig.Configure();
 
             // act
-            using (var scope = container.BeginLifetimeScope())
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
             {
-                actual = scope.Resolve<IDisplay>();
+                actual = serviceProvider.GetService<IDisplay>();
             }
 
             // assert
@@ -61,16 +75,15 @@ namespace ConsoleUI.UnitTests
         }
 
         [Test]
-        public void ConfigureRegistersIGameControllerCreatorTest()
+        public void ConfigureServiceProviderRegistersIGameControllerCreatorTest()
         {
             // arrange
             IGameControllerCreator actual;
-            var container = ContainerConfig.Configure();
 
             // act
-            using (var scope = container.BeginLifetimeScope())
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
             {
-                actual = scope.Resolve<IGameControllerCreator>();
+                actual = serviceProvider.GetService<IGameControllerCreator>();
             }
 
             // assert
@@ -78,16 +91,31 @@ namespace ConsoleUI.UnitTests
         }
 
         [Test]
-        public void ConfigureRegistersISnakeBotTest()
+        public void ConfigureServiceProviderRegistersISnakeBotTest()
         {
             // arrange
             ISnakeBot actual;
-            var container = ContainerConfig.Configure();
 
             // act
-            using (var scope = container.BeginLifetimeScope())
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
             {
-                actual = scope.Resolve<ISnakeBot>();
+                actual = serviceProvider.GetService<ISnakeBot>();
+            }
+
+            // assert
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void ConfigureServiceProviderRegistersMenuTest()
+        {
+            // arrange
+            Menu actual;
+
+            // act
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
+            {
+                actual = serviceProvider.GetService<Menu>();
             }
 
             // assert
