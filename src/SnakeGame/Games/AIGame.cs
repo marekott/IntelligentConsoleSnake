@@ -5,7 +5,7 @@ namespace SnakeGame.Games
 {
     public class AIGame : IGame //TODO dużo wspólnego z StandardGame, może klasa abstrakcyjna?
     {
-        private readonly Snake _snake;
+        private readonly IntelligentSnake _snake;
         private readonly Map _map;
         private readonly GameRules _gameRules;
         private readonly Reward _reward;
@@ -15,7 +15,7 @@ namespace SnakeGame.Games
         private readonly ISnakeBot _snakeBot;
         private int _score;
 
-        public AIGame(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds, ISnakeBot snakeBot) //TODO builder zamiast x parametrów?
+        public AIGame(IntelligentSnake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds, ISnakeBot snakeBot) //TODO builder zamiast x parametrów?
         {
             _snake = snake;
             _map = map;

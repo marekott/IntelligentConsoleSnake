@@ -31,7 +31,7 @@ namespace ConsoleUI.FactoryMethods
         public IGame AIGameFactoryMethod()
         {
             var map = CreateMap();
-            var snake = CreateSnake();
+            var snake = CreateIntelligentSnake();
             var gameRules = new GameRules();
             var reward = new Reward(_display);
             return new AIGame(snake, map, gameRules, reward, _display, 150, _snakeBot);
@@ -49,6 +49,17 @@ namespace ConsoleUI.FactoryMethods
                 new SnakeElement(10, 5, DirectionOfMove.Right),
             };
             var snake = new Snake(snakeBody, _display);
+            SetSnakeInitialLength(snake);
+            return snake;
+        }
+
+        private IntelligentSnake CreateIntelligentSnake()
+        {
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(10, 5, DirectionOfMove.Right),
+            };
+            var snake = new IntelligentSnake(snakeBody, _display);
             SetSnakeInitialLength(snake);
             return snake;
         }

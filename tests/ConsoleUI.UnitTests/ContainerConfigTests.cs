@@ -3,6 +3,7 @@ using ConsoleUI.FactoryMethods;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
+using SnakeAI;
 using SnakeGame.Interfaces;
 
 namespace ConsoleUI.UnitTests
@@ -116,6 +117,38 @@ namespace ConsoleUI.UnitTests
             using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
             {
                 actual = serviceProvider.GetService<Menu>();
+            }
+
+            // assert
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void ConfigureServiceProviderRegistersSnakeAIModelTest()
+        {
+            // arrange
+            SnakeAIModel actual;
+
+            // act
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
+            {
+                actual = serviceProvider.GetService<SnakeAIModel>();
+            }
+
+            // assert
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void ConfigureServiceProviderRegistersModelInputHelperTest()
+        {
+            // arrange
+            ModelInputHelper actual;
+
+            // act
+            using (var serviceProvider = ContainerConfig.ConfigureServiceProvider())
+            {
+                actual = serviceProvider.GetService<ModelInputHelper>();
             }
 
             // assert

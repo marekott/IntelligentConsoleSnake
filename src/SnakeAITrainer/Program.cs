@@ -9,16 +9,15 @@ namespace SnakeAITrainer
         {
             var mlContext = new MLContext();
             var ui = new UserInterface();
-            var logisticRegression = new LogisticRegression(mlContext);
+            var fastTree = new FastTree(mlContext);
 
-            var filePath = ui.AskForFilePath();
             ui.DisplayModelTraining();
 
-            logisticRegression.Train(filePath);
+            fastTree.Train();
 
-            ui.DisplayMetrics(logisticRegression.Evaluate());
-            ui.SaveModel(mlContext, logisticRegression.Model, logisticRegression.DataView);
-            
+            ui.DisplayMetrics(fastTree.Evaluate());
+            ui.SaveModel(mlContext, fastTree.Model, fastTree.DataView);
+
             Console.ReadKey();
         }
     }

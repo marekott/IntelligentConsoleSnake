@@ -2,6 +2,6 @@
 {
     public interface ISnakeBot
     {
-        DirectionOfMove ChooseDirection(Snake snake, Reward reward, Map map);
+        DirectionOfMove ChooseDirection(IntelligentSnake snake, Reward reward, Map map);
     }
 }

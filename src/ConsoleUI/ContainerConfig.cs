@@ -3,7 +3,7 @@ using ConsoleUI.Configuration;
 using ConsoleUI.FactoryMethods;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SnakeGame;
+using SnakeAI;
 using SnakeGame.Interfaces;
 
 namespace ConsoleUI
@@ -20,6 +20,8 @@ namespace ConsoleUI
                 .AddScoped<IGameControllerCreator, GameControllerCreator>()
                 .AddScoped<ISnakeBot, SnakeBot>()
                 .AddScoped<Menu>()
+                .AddScoped<SnakeAIModel>()
+                .AddScoped<ModelInputHelper>()
                 .BuildServiceProvider();
         }
 

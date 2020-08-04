@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI", "src\ConsoleUI\ConsoleUI.csproj", "{50FBC88A-9B59-4E48-96C6-6197199ECA34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "src\ConsoleUI\ConsoleUI.csproj", "{50FBC88A-9B59-4E48-96C6-6197199ECA34}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame", "src\SnakeGame\SnakeGame.csproj", "{7057DA9D-119A-4956-AFAE-4D193F418C7C}"
 EndProject
@@ -11,9 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{277A3FBC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeGame.UnitTests", "tests\SnakeGame.UnitTests\SnakeGame.UnitTests.csproj", "{BF3327D4-EDC0-423D-AB82-38E6B649A0DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUI.UnitTests", "tests\ConsoleUI.UnitTests\ConsoleUI.UnitTests.csproj", "{BA78C131-D136-4FA5-A96B-7140541831A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI.UnitTests", "tests\ConsoleUI.UnitTests\ConsoleUI.UnitTests.csproj", "{BA78C131-D136-4FA5-A96B-7140541831A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeAITrainer", "src\SnakeAITrainer\SnakeAITrainer.csproj", "{2D4C705E-5E8C-4C6D-A1B8-33DBDDE0EA91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeAITrainer", "src\SnakeAITrainer\SnakeAITrainer.csproj", "{2D4C705E-5E8C-4C6D-A1B8-33DBDDE0EA91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnakeAI", "src\SnakeAI\SnakeAI.csproj", "{53C805FA-1933-477F-97E4-D511D2B976D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeAI.Tests", "tests\SnakeAI.Tests\SnakeAI.Tests.csproj", "{C0F64D5E-DE12-460B-BBA0-9A9472971B9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{2D4C705E-5E8C-4C6D-A1B8-33DBDDE0EA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D4C705E-5E8C-4C6D-A1B8-33DBDDE0EA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D4C705E-5E8C-4C6D-A1B8-33DBDDE0EA91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C805FA-1933-477F-97E4-D511D2B976D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C805FA-1933-477F-97E4-D511D2B976D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C805FA-1933-477F-97E4-D511D2B976D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C805FA-1933-477F-97E4-D511D2B976D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F64D5E-DE12-460B-BBA0-9A9472971B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F64D5E-DE12-460B-BBA0-9A9472971B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F64D5E-DE12-460B-BBA0-9A9472971B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F64D5E-DE12-460B-BBA0-9A9472971B9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BF3327D4-EDC0-423D-AB82-38E6B649A0DB} = {277A3FBC-71A7-4293-976A-7E06145073BA}
 		{BA78C131-D136-4FA5-A96B-7140541831A7} = {277A3FBC-71A7-4293-976A-7E06145073BA}
+		{C0F64D5E-DE12-460B-BBA0-9A9472971B9F} = {277A3FBC-71A7-4293-976A-7E06145073BA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54D4D848-074E-4276-AD27-323C94F258DC}

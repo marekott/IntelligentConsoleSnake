@@ -3,7 +3,7 @@ using ConsoleUI.FactoryMethods;
 using ConsoleUI.GameControllers;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using SnakeGame;
+using SnakeAI;
 
 namespace ConsoleUI.UnitTests.FactoryMethods
 {
@@ -14,7 +14,7 @@ namespace ConsoleUI.UnitTests.FactoryMethods
         public void StandardGameControllerFactoryMethodTest()
         {
             // arrange
-            var gameControllerCreator = new GameControllerCreator(new GameCreator(new ConfigProvider(new ConfigurationBuilder().Build()), new Display(new ConfigProvider(new ConfigurationBuilder().Build())), new SnakeBot()));
+            var gameControllerCreator = new GameControllerCreator(new GameCreator(new ConfigProvider(new ConfigurationBuilder().Build()), new Display(new ConfigProvider(new ConfigurationBuilder().Build())), new SnakeBot(new SnakeAIModel(), new ModelInputHelper())));
 
             // act
             var actual = gameControllerCreator.StandardGameControllerFactoryMethod();
@@ -27,7 +27,7 @@ namespace ConsoleUI.UnitTests.FactoryMethods
         public void AIGameControllerFactoryMethodTest()
         {
             // arrange
-            var gameControllerCreator = new GameControllerCreator(new GameCreator(new ConfigProvider(new ConfigurationBuilder().Build()), new Display(new ConfigProvider(new ConfigurationBuilder().Build())), new SnakeBot()));
+            var gameControllerCreator = new GameControllerCreator(new GameCreator(new ConfigProvider(new ConfigurationBuilder().Build()), new Display(new ConfigProvider(new ConfigurationBuilder().Build())), new SnakeBot(new SnakeAIModel(), new ModelInputHelper())));
 
             // act
             var actual = gameControllerCreator.AIGameControllerFactoryMethod();

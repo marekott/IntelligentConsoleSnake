@@ -5,23 +5,23 @@ namespace SnakeGame
 {
     public class Snake
     {
-        private readonly List<SnakeElement> _body;
+        protected readonly List<SnakeElement> Body;
         private readonly IDisplay _display;
-        private int LastElementIndex => _body.Count - 1;
-        private readonly SnakeElement _head;
-        public int HeadDistanceFromLeft => _head.DistanceFromLeft;
-        public int HeadDistanceFromTop => _head.DistanceFromTop;
+        private int LastElementIndex => Body.Count - 1;
+        protected readonly SnakeElement Head;
+        public int HeadDistanceFromLeft => Head.DistanceFromLeft;
+        public int HeadDistanceFromTop => Head.DistanceFromTop;
 
         public Snake(List<SnakeElement> body, IDisplay display)
         {
-            _body = body;
+            Body = body;
             _display = display;
-            _head = _body[0];
+            Head = Body[0];
         }
 
         public void MoveSnake()
         {
-            foreach (var element in _body)
+            foreach (var element in Body)
             {
                 _display.Clear(element.DistanceFromLeft, element.DistanceFromTop);
                 element.Move();
@@ -36,25 +36,25 @@ namespace SnakeGame
             //After each move beginning from end, each element take direction from element before it (element 0 not because player change its direction).
             for (int i = LastElementIndex; i > 0; i--)
             {
-                _body[i].ChangeDirection(_body[i - 1].DirectionOfMove);
+                Body[i].ChangeDirection(Body[i - 1].DirectionOfMove);
             }
         }
 
         public void GrowSnake()
         {
-            _body.Add(_body[LastElementIndex].CreateSnakeElementBehind());
+            Body.Add(Body[LastElementIndex].CreateSnakeElementBehind());
         }
 
         public void TurnSnake(DirectionOfMove newDirectionOfMove)
         {
-            _head.ChangeDirection(newDirectionOfMove);
+            Head.ChangeDirection(newDirectionOfMove);
         }
 
         public bool HasSnakeEatenHimself()
         {
             for (int i = 1; i <= LastElementIndex; i++)
             {
-                if (_head.DistanceFromLeft == _body[i].DistanceFromLeft && _head.DistanceFromTop == _body[i].DistanceFromTop)
+                if (Head.DistanceFromLeft == Body[i].DistanceFromLeft && Head.DistanceFromTop == Body[i].DistanceFromTop)
                 {
                     return true;
                 }

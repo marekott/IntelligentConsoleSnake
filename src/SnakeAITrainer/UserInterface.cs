@@ -12,12 +12,6 @@ namespace SnakeAITrainer
             Console.Write("Training model...");
         }
 
-        public string AskForFilePath()
-        {
-            Console.Write("Provide full path to training data: ");
-            return Console.ReadLine();
-        }
-
         public void DisplayMetrics(CalibratedBinaryClassificationMetrics metrics)
         {
             Console.Clear();
