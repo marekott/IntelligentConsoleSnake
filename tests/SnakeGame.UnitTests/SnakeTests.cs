@@ -153,5 +153,93 @@ namespace SnakeGame.UnitTests
             // assert
             Assert.True(actual);
         }
+
+        [Test]
+        public void GetSnakeTopPositionsWithoutDuplicatesTest()
+        {
+            // arrange
+            var expected = new HashSet<int> {2, 3, 4, 5};
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(3, 2, DirectionOfMove.Right),
+                new SnakeElement(3, 3, DirectionOfMove.Right),
+                new SnakeElement(3, 4, DirectionOfMove.Right),
+                new SnakeElement(3, 5, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+
+            // act
+            var actual = snake.GetSnakeTopPositions();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GetSnakeTopPositionsWithDuplicatesTest()
+        {
+            // arrange
+            var expected = new HashSet<int> { 5 };
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(2, 5, DirectionOfMove.Right),
+                new SnakeElement(3, 5, DirectionOfMove.Right),
+                new SnakeElement(4, 5, DirectionOfMove.Right),
+                new SnakeElement(5, 5, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+
+            // act
+            var actual = snake.GetSnakeTopPositions();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GetSnakeLeftPositionsWithoutDuplicatesTest()
+        {
+            // arrange
+            var expected = new HashSet<int> { 2, 3, 4, 5 };
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(2, 5, DirectionOfMove.Right),
+                new SnakeElement(3, 5, DirectionOfMove.Right),
+                new SnakeElement(4, 5, DirectionOfMove.Right),
+                new SnakeElement(5, 5, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+
+            // act
+            var actual = snake.GetSnakeLeftPositions();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GetSnakeLeftPositionsWithDuplicatesTest()
+        {
+            // arrange
+            var expected = new HashSet<int> { 3 };
+            var snakeBody = new List<SnakeElement>
+            {
+                new SnakeElement(3, 2, DirectionOfMove.Right),
+                new SnakeElement(3, 3, DirectionOfMove.Right),
+                new SnakeElement(3, 4, DirectionOfMove.Right),
+                new SnakeElement(3, 5, DirectionOfMove.Right)
+            };
+            var displayStub = new Display();
+            var snake = new Snake(snakeBody, displayStub);
+
+            // act
+            var actual = snake.GetSnakeLeftPositions();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }

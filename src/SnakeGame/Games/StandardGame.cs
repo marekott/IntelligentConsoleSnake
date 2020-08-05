@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using SnakeGame.Interfaces;
 
 namespace SnakeGame.Games
@@ -7,6 +8,8 @@ namespace SnakeGame.Games
     {
         private readonly Snake _snake;
         private bool _doesSnakeMoved;
+        private HashSet<int> SnakeTopPositions => _snake.GetSnakeTopPositions();
+        private HashSet<int> SnakeLeftPositions => _snake.GetSnakeLeftPositions();
 
         public StandardGame(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds) : base(map, gameRules, reward, display, snakeSpeedInMilliseconds)
         {
@@ -15,7 +18,7 @@ namespace SnakeGame.Games
 
         public override void StartGame()
         {
-            Reward.GenerateRandom(Map);
+            Reward.GenerateRandom(Map, SnakeLeftPositions, SnakeTopPositions);
 
             while (IsGameOver == false)
             {
@@ -36,7 +39,7 @@ namespace SnakeGame.Games
                     Score++;
                     Reward.Collect(Score);
                     _snake.GrowSnake();
-                    Reward.GenerateRandom(Map);
+                    Reward.GenerateRandom(Map, SnakeLeftPositions, SnakeTopPositions);
                 }
             }
 

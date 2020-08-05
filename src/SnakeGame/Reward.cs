@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using SnakeGame.Extensions;
 using SnakeGame.Interfaces;
 
 namespace SnakeGame
@@ -16,10 +18,10 @@ namespace SnakeGame
             _display = display;
         }
 
-        public void GenerateRandom(Map map) //TODO mechanizm zabezpieczający przed generowaniem na wężu
+        public void GenerateRandom(Map map, HashSet<int> excludeWidths, HashSet<int> excludeHeights)
         {
-            DistanceFromLeft = _random.Next(1, map.Width);
-            DistanceFromTop = _random.Next(1, map.Height);
+            DistanceFromLeft = _random.Next(1, map.Width, excludeWidths);
+            DistanceFromTop = _random.Next(1, map.Height, excludeHeights);
             
             _display.Reward(DistanceFromLeft, DistanceFromTop);
         }

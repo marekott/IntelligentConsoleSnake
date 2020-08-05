@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SnakeGame.Interfaces;
 
 namespace SnakeGame
@@ -61,6 +62,16 @@ namespace SnakeGame
             }
 
             return false;
+        }
+
+        public HashSet<int> GetSnakeTopPositions()
+        {
+            return new HashSet<int>(Body.Select(e => e.DistanceFromTop));
+        }
+
+        public HashSet<int> GetSnakeLeftPositions()
+        {
+            return new HashSet<int>(Body.Select(e => e.DistanceFromLeft));
         }
     }
 }

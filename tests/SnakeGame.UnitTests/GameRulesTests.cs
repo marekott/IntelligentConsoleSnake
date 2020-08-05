@@ -166,7 +166,7 @@ namespace SnakeGame.UnitTests
             var snake = new Snake(snakeBody, displayStub);
             var map = new Map(10, 10);
             var reward = new Reward(displayStub);
-            reward.GenerateRandom(map);
+            reward.GenerateRandom(map, new HashSet<int>{100}, new HashSet<int>{100});
             var gameRules = new GameRules();
 
             // act
