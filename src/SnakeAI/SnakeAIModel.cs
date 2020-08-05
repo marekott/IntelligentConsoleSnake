@@ -10,7 +10,7 @@ namespace SnakeAI
         private readonly MLContext _mlContext;
         private readonly ITransformer _trainedModel;
 
-        public SnakeAIModel() //TODO factory method
+        public SnakeAIModel()
         {
             _mlContext = new MLContext();
             _trainedModel = _mlContext.Model.Load($@"{Directory.GetCurrentDirectory()}\model.zip", out _);

@@ -3,66 +3,56 @@ using SnakeGame.Interfaces;
 
 namespace SnakeGame.Games
 {
-    public class StandardGame : IGame
+    public class StandardGame : BaseGame
     {
         private readonly Snake _snake;
-        private readonly Map _map;
-        private readonly GameRules _gameRules;
-        private readonly Reward _reward;
-        private readonly IDisplay _display;
-        private bool _isGameOver;
-        private readonly int _snakeSpeedInMilliseconds;
-        private int _score;
+        private bool _doesSnakeMoved;
 
-        public StandardGame(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds) //TODO builder zamiast x parametrów?
+        public StandardGame(Snake snake, Map map, GameRules gameRules, Reward reward, IDisplay display, int snakeSpeedInMilliseconds) : base(map, gameRules, reward, display, snakeSpeedInMilliseconds)
         {
             _snake = snake;
-            _map = map;
-            _gameRules = gameRules;
-            _reward = reward;
-            _display = display;
-            _snakeSpeedInMilliseconds = snakeSpeedInMilliseconds;
         }
 
-        public void StartGame()
+        public override void StartGame()
         {
-            _reward.GenerateRandom(_map);
+            Reward.GenerateRandom(Map);
 
-            while (_isGameOver == false)
+            while (IsGameOver == false)
             {
-                Thread.Sleep(_snakeSpeedInMilliseconds); 
+                Thread.Sleep(SnakeSpeedInMilliseconds); 
 
                 //Monitor is used to prevent situation when first element was moved and before second will inherit his direction of move, 
                 //first once more changes direction of move. So the change is possible only between calls of MoveSnake method 
                 Monitor.Enter(_snake);
                 _snake.MoveSnake();
-                _isGameOver = _gameRules.IsGameOver(_snake, _map);
+                IsGameOver = GameRules.IsGameOver(_snake, Map);
                 Monitor.Pulse(_snake);
                 Monitor.Exit(_snake);
 
-                if (_gameRules.IsRewardCollected(_snake, _reward))
+                _doesSnakeMoved = true;
+
+                if (GameRules.IsRewardCollected(_snake, Reward))
                 {
-                    _score++;
-                    _reward.Collect(_score);
+                    Score++;
+                    Reward.Collect(Score);
                     _snake.GrowSnake();
-                    _reward.GenerateRandom(_map);
+                    Reward.GenerateRandom(Map);
                 }
             }
 
-            _display.GameOver();
+            Display.GameOver();
         }
 
-        public void TurnSnake(DirectionOfMove newDirection)
+        public override void TurnSnake(DirectionOfMove newDirection)
         {
-            Monitor.Enter(_snake);
-            _snake.TurnSnake(newDirection);
-            Monitor.Exit(_snake);
-        }
+            if (_doesSnakeMoved)
+            {
+                Monitor.Enter(_snake);
+                _snake.TurnSnake(newDirection);
+                Monitor.Exit(_snake);
 
-        public void CancelGame()
-        {
-            _gameRules.CancelGame();
-            _display.GameOver();
+                _doesSnakeMoved = false;
+            }
         }
     }
 }
