@@ -3,7 +3,7 @@ using System;
 
 namespace ConsoleUI.Configuration
 {
-    public class ConfigProvider : IConfigProvider //TODO jako singleton
+    public class ConfigProvider : IConfigProvider
     {
         private readonly IConfiguration _config;
 
@@ -30,6 +30,16 @@ namespace ConsoleUI.Configuration
         public int GetGameTopOffset()
         {
             return Convert.ToInt16(_config.GetSection("Game")["GameTopOffset"]);
+        }
+
+        public int GetSnakeSpeedInMilliseconds()
+        {
+            return Convert.ToInt16(_config.GetSection("Game")["SnakeSpeedInMilliseconds"]);
+        }
+
+        public int GetIntelligentSnakeSpeedInMilliseconds()
+        {
+            return Convert.ToInt16(_config.GetSection("Game")["IntelligentSnakeSpeedInMilliseconds"]);
         }
     }
 }

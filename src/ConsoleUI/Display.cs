@@ -4,7 +4,7 @@ using SnakeGame.Interfaces;
 
 namespace ConsoleUI
 {
-    public class Display : IDisplay //TODO singleton?
+    public class Display : IDisplay
     {
         private readonly int _leftOffset;
         private readonly int _topOffset;

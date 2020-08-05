@@ -6,5 +6,7 @@
         int GetMapWidth();
         int GetGameLeftOffset();
         int GetGameTopOffset();
+        int GetSnakeSpeedInMilliseconds();
+        int GetIntelligentSnakeSpeedInMilliseconds();
     }
 }

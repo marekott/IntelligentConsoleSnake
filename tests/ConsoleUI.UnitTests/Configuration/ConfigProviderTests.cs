@@ -62,5 +62,33 @@ namespace ConsoleUI.UnitTests.Configuration
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void GetSnakeSpeedInMillisecondsTest()
+        {
+            // arrange
+            const int expected = 150;
+            var configProvider = ContainerConfig.ConfigureServiceProvider().GetService<IConfigProvider>();
+
+            // act
+            var actual = configProvider.GetSnakeSpeedInMilliseconds();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GetIntelligentSnakeSpeedInMillisecondsTest()
+        {
+            // arrange
+            const int expected = 50;
+            var configProvider = ContainerConfig.ConfigureServiceProvider().GetService<IConfigProvider>();
+
+            // act
+            var actual = configProvider.GetIntelligentSnakeSpeedInMilliseconds();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

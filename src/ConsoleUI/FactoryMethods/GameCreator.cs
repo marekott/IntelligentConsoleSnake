@@ -25,7 +25,7 @@ namespace ConsoleUI.FactoryMethods
             var snake = CreateSnake();
             var gameRules = new GameRules();
             var reward = new Reward(_display);
-            return new StandardGame(snake, map, gameRules, reward, _display, 150);
+            return new StandardGame(snake, map, gameRules, reward, _display, _configProvider.GetSnakeSpeedInMilliseconds());
         }
 
         public IGame AIGameFactoryMethod()
@@ -34,7 +34,7 @@ namespace ConsoleUI.FactoryMethods
             var snake = CreateIntelligentSnake();
             var gameRules = new GameRules();
             var reward = new Reward(_display);
-            return new AIGame(snake, map, gameRules, reward, _display, 150, _snakeBot);
+            return new AIGame(snake, map, gameRules, reward, _display, _configProvider.GetIntelligentSnakeSpeedInMilliseconds(), _snakeBot);
         }
 
         private Map CreateMap()
