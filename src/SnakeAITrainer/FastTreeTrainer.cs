@@ -6,14 +6,14 @@ using static Microsoft.ML.DataOperationsCatalog;
 
 namespace SnakeAITrainer
 {
-    public class FastTree
+    public class FastTreeTrainer
     {
         private readonly MLContext _mlContext;
         private TrainTestData _trainTestData;
         public ITransformer Model { get; private set; }
         public IDataView DataView { get; private set; }
 
-        public FastTree(MLContext mlContext)
+        public FastTreeTrainer(MLContext mlContext)
         {
             _mlContext = mlContext;
         }

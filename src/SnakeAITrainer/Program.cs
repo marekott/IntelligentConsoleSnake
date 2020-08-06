@@ -9,14 +9,14 @@ namespace SnakeAITrainer
         {
             var mlContext = new MLContext();
             var ui = new UserInterface();
-            var fastTree = new FastTree(mlContext);
+            var fastTreeTrainer = new FastTreeTrainer(mlContext);
 
             ui.DisplayModelTraining();
 
-            fastTree.Train();
+            fastTreeTrainer.Train();
 
-            ui.DisplayMetrics(fastTree.Evaluate());
-            ui.SaveModel(mlContext, fastTree.Model, fastTree.DataView);
+            ui.DisplayMetrics(fastTreeTrainer.Evaluate());
+            ui.SaveModel(mlContext, fastTreeTrainer.Model, fastTreeTrainer.DataView);
 
             Console.ReadKey();
         }
