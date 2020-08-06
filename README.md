@@ -1,5 +1,5 @@
 # IntelligentConsoleSnake
-Project of game based on mobile snake. User have choice of playing manually or watching the game of trained Neural Network.
+Project of game based on mobile snake. User have choice of playing manually or watching the game of trained AI Model.
 
 ## System Context
 <p>
